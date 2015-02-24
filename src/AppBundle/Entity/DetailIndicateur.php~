@@ -73,4 +73,50 @@ class DetailIndicateur
     {
         return $this->date;
     }
+
+    /**
+     * Set indicateur
+     *
+     * @param \AppBundle\Entity\Indicateur $indicateur
+     * @return DetailIndicateur
+     */
+    public function setIndicateur(\AppBundle\Entity\Indicateur $indicateur = null)
+    {
+        $this->indicateur = $indicateur;
+
+        return $this;
+    }
+
+    /**
+     * Get indicateur
+     *
+     * @return \AppBundle\Entity\Indicateur 
+     */
+    public function getIndicateur()
+    {
+        return $this->indicateur;
+    }
+
+    /**
+     * Set unite
+     *
+     * @param \AppBundle\Entity\Unite $unite
+     * @return DetailIndicateur
+     */
+    public function setUnite(\AppBundle\Entity\Unite $unite = null)
+    {
+        $this->unite = $unite;
+
+        return $this;
+    }
+
+    /**
+     * Get unite
+     *
+     * @return \AppBundle\Entity\Unite 
+     */
+    public function getUnite()
+    {
+        return $this->unite;
+    }
 }

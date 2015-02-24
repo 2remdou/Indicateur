@@ -4,12 +4,15 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Indicateur
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\IndicateurRepository")
+ * @ExclusionPolicy("all")
  */
 
 class Indicateur
@@ -20,6 +23,7 @@ class Indicateur
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose()
      */
     private $id;
 
@@ -28,16 +32,24 @@ class Indicateur
      *
      * @ORM\Column(name="libelleIndicateur", type="string", length=255)
      * @Assert\NotBlank(message="L'indicateur doit avoir un nom")
+     * @Expose()
      */
     private $libelleIndicateur;
 
     /**
      * @var Doctrine\Common\Collections\Collection $detailIndicateurs
      *
-     * @ORM\OneToMany(targetEntity="DetailIndicateur", mappedBy="indicateur")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\DetailIndicateur", mappedBy="indicateur")
      */
     private $detailIndicateurs;
 
+    /**
+     * @var TypeIndicateur $typeIndicateur
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TypeIndicateur", inversedBy="indicateur",cascade={"persist","remove"})
+     * @Expose()
+     */
+    private  $typeIndicateur;
     /**
      * Get id
      *
@@ -109,5 +121,28 @@ class Indicateur
     public function getDetailIndicateurs()
     {
         return $this->detailIndicateurs;
+    }
+
+    /**
+     * Set typeIndicateur
+     *
+     * @param \AppBundle\Entity\TypeIndicateur $typeIndicateur
+     * @return Indicateur
+     */
+    public function setTypeIndicateur(\AppBundle\Entity\TypeIndicateur $typeIndicateur = null)
+    {
+        $this->typeIndicateur = $typeIndicateur;
+
+        return $this;
+    }
+
+    /**
+     * Get typeIndicateur
+     *
+     * @return \AppBundle\Entity\TypeIndicateur 
+     */
+    public function getTypeIndicateur()
+    {
+        return $this->typeIndicateur;
     }
 }
