@@ -33,6 +33,12 @@ class DetailIndicateur
      *
      * @ORM\ManyToOne(targetEntity="Indicateur")
      */
+
+    /**
+     * @var
+     * @ORM\Column(name="valeur",type="decimal")
+     */
+    private $valeur;
     private $indicateur;
 
     /**
@@ -118,5 +124,12 @@ class DetailIndicateur
     public function getUnite()
     {
         return $this->unite;
+    }
+
+    public function update(DetailIndicateur $newDetail)
+    {
+        $this->setDate($newDetail->getDate());
+        $this->setIndicateur($newDetail->getIndicateur());
+        $this->setUnite($newDetail->getUnite());
     }
 }

@@ -628,6 +628,664 @@ form .request-content {
                 <ul class="endpoints">
                     <li class="endpoint">
                         <ul class="operations">
+                                                            <li class="get operation" id="get--detail-indicateurs.{_format}">
+    <div class="heading toggler" data-href="#get--detail-indicateurs.{_format}">
+        <h3>
+            <span class="http_method">
+                <i>GET</i>
+            </span>
+
+            
+                        
+            <span class="path">
+                /detail/indicateurs.{_format}
+            </span>
+                   </h3>
+        <ul class="options">
+                            <li>Tous les details de tous les indicateurs</li>
+                    </ul>
+    </div>
+
+    <div class="content" style="display: none;">
+        <ul class="tabs">
+            <li class="selected" data-pane="content">Documentation</li>
+                            <li data-pane="sandbox">Sandbox</li>
+                    </ul>
+
+        <div class="panes">
+            <div class="pane content selected">
+                            <h4>Documentation</h4>
+                <div><p>@ApiDoc(
+     description="Tous les details de tous les indicateurs",
+     statusCodes={
+         200="Operation reussie",
+ }
+)</p>
+</div>
+            
+            
+                            <h4>Requirements</h4>
+                <table class="fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Requirement</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                    <tr>
+                                <td>_format</td>
+                                <td>json|xml|html</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                                            </tbody>
+                </table>
+            
+            
+            
+            
+                            <h4>Status Codes</h4>
+                <table class="fullwidth">
+                    <thead>
+                    <tr>
+                        <th>Status Code</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                                            <tr>
+                            <td><a href="http://en.wikipedia.org/wiki/HTTP_200" target="_blank">200</a></td>
+                            <td>
+                                <ul>
+                                                                            <li>Operation reussie</li>
+                                                                    </ul>
+                            </td>
+                        </tr>
+                                        </tbody>
+                </table>
+            
+            
+            </div>
+
+                            <div class="pane sandbox">
+                                            <form method="GET" action="/detail/indicateurs.{_format}">
+                            <fieldset class="parameters">
+                                <legend>Input</legend>
+                                                                    <h4>Requirements</h4>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="_format" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                                                                                    
+                            </fieldset>
+
+                            <fieldset class="headers">
+                                <legend>Headers</legend>
+
+                                
+                                <p class="tuple">
+                                    <input type="text" class="key" placeholder="Key" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                                </p>
+
+                                <button type="button" class="add_header">New header</button>
+                            </fieldset>
+
+                            <fieldset class="request-content">
+                                <legend>Content</legend>
+
+                                <textarea class="content" placeholder="Content set here will override the parameters that do not match the url"></textarea>
+
+                                <p class="tuple">
+                                    <input type="text" class="key content-type" value="Content-Type" disabled="disabled" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" />
+                                    <button  type="button" class="set-content-type">Set header</button> <small>Replaces header if set</small>
+                                </p>
+                            </fieldset>
+
+                            <div class="buttons">
+                                <input type="submit" value="Try!" />
+                            </div>
+                        </form>
+
+                        <script type="text/x-tmpl" class="parameters_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                            </select>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+                        <script type="text/x-tmpl" class="headers_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+
+                        <div class="result">
+                            <h4>Request URL</h4>
+                            <pre class="url"></pre>
+
+                            <h4>Response Headers&nbsp;<small>[<a href="" class="to-expand">Expand</a>]</small>&nbsp;<small class="profiler">[<a href="" class="profiler-link" target="_blank">Profiler</a>]</small></h4>
+                            <pre class="headers to-expand"></pre>
+
+                            <h4>Response Body&nbsp;<small>[<a href="" class="to-raw">Raw</a>]</small></h4>
+                            <pre class="response prettyprint"></pre>
+                        </div>
+                                    </div>
+                    </div>
+    </div>
+</li>
+                                                            <li class="post operation" id="post--details-indicateurs.{_format}">
+    <div class="heading toggler" data-href="#post--details-indicateurs.{_format}">
+        <h3>
+            <span class="http_method">
+                <i>POST</i>
+            </span>
+
+            
+                        
+            <span class="path">
+                /details/indicateurs.{_format}
+            </span>
+                   </h3>
+        <ul class="options">
+                            <li>Cree un detail d&#039;un indicateur</li>
+                    </ul>
+    </div>
+
+    <div class="content" style="display: none;">
+        <ul class="tabs">
+            <li class="selected" data-pane="content">Documentation</li>
+                            <li data-pane="sandbox">Sandbox</li>
+                    </ul>
+
+        <div class="panes">
+            <div class="pane content selected">
+            
+            
+                            <h4>Requirements</h4>
+                <table class="fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Requirement</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                    <tr>
+                                <td>_format</td>
+                                <td>json|xml|html</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                                            </tbody>
+                </table>
+            
+            
+            
+            
+                            <h4>Status Codes</h4>
+                <table class="fullwidth">
+                    <thead>
+                    <tr>
+                        <th>Status Code</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                                            <tr>
+                            <td><a href="http://en.wikipedia.org/wiki/HTTP_200" target="_blank">200</a></td>
+                            <td>
+                                <ul>
+                                                                            <li>Creation reussie</li>
+                                                                    </ul>
+                            </td>
+                        </tr>
+                                            <tr>
+                            <td><a href="http://en.wikipedia.org/wiki/HTTP_400" target="_blank">400</a></td>
+                            <td>
+                                <ul>
+                                                                            <li>Donnees non valide</li>
+                                                                    </ul>
+                            </td>
+                        </tr>
+                                        </tbody>
+                </table>
+            
+            
+            </div>
+
+                            <div class="pane sandbox">
+                                            <form method="POST" action="/details/indicateurs.{_format}">
+                            <fieldset class="parameters">
+                                <legend>Input</legend>
+                                                                    <h4>Requirements</h4>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="_format" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                                                                                    
+                            </fieldset>
+
+                            <fieldset class="headers">
+                                <legend>Headers</legend>
+
+                                
+                                <p class="tuple">
+                                    <input type="text" class="key" placeholder="Key" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                                </p>
+
+                                <button type="button" class="add_header">New header</button>
+                            </fieldset>
+
+                            <fieldset class="request-content">
+                                <legend>Content</legend>
+
+                                <textarea class="content" placeholder="Content set here will override the parameters that do not match the url"></textarea>
+
+                                <p class="tuple">
+                                    <input type="text" class="key content-type" value="Content-Type" disabled="disabled" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" />
+                                    <button  type="button" class="set-content-type">Set header</button> <small>Replaces header if set</small>
+                                </p>
+                            </fieldset>
+
+                            <div class="buttons">
+                                <input type="submit" value="Try!" />
+                            </div>
+                        </form>
+
+                        <script type="text/x-tmpl" class="parameters_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                            </select>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+                        <script type="text/x-tmpl" class="headers_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+
+                        <div class="result">
+                            <h4>Request URL</h4>
+                            <pre class="url"></pre>
+
+                            <h4>Response Headers&nbsp;<small>[<a href="" class="to-expand">Expand</a>]</small>&nbsp;<small class="profiler">[<a href="" class="profiler-link" target="_blank">Profiler</a>]</small></h4>
+                            <pre class="headers to-expand"></pre>
+
+                            <h4>Response Body&nbsp;<small>[<a href="" class="to-raw">Raw</a>]</small></h4>
+                            <pre class="response prettyprint"></pre>
+                        </div>
+                                    </div>
+                    </div>
+    </div>
+</li>
+                                                            <li class="get operation" id="get--details-{detailIndicateur}-indicateur.{_format}">
+    <div class="heading toggler" data-href="#get--details-{detailIndicateur}-indicateur.{_format}">
+        <h3>
+            <span class="http_method">
+                <i>GET</i>
+            </span>
+
+            
+                        
+            <span class="path">
+                /details/{detailIndicateur}/indicateur.{_format}
+            </span>
+                   </h3>
+        <ul class="options">
+                            <li>Detail d&#039;un indicateur</li>
+                    </ul>
+    </div>
+
+    <div class="content" style="display: none;">
+        <ul class="tabs">
+            <li class="selected" data-pane="content">Documentation</li>
+                            <li data-pane="sandbox">Sandbox</li>
+                    </ul>
+
+        <div class="panes">
+            <div class="pane content selected">
+            
+            
+                            <h4>Requirements</h4>
+                <table class="fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Requirement</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                    <tr>
+                                <td>_format</td>
+                                <td>json|xml|html</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>detailIndicateur</td>
+                                <td></td>
+                                <td>DetailIndicateur</td>
+                                <td></td>
+                            </tr>
+                                            </tbody>
+                </table>
+            
+            
+            
+            
+                            <h4>Status Codes</h4>
+                <table class="fullwidth">
+                    <thead>
+                    <tr>
+                        <th>Status Code</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                                            <tr>
+                            <td><a href="http://en.wikipedia.org/wiki/HTTP_200" target="_blank">200</a></td>
+                            <td>
+                                <ul>
+                                                                            <li>Operation reussie</li>
+                                                                    </ul>
+                            </td>
+                        </tr>
+                                        </tbody>
+                </table>
+            
+            
+            </div>
+
+                            <div class="pane sandbox">
+                                            <form method="GET" action="/details/{detailIndicateur}/indicateur.{_format}">
+                            <fieldset class="parameters">
+                                <legend>Input</legend>
+                                                                    <h4>Requirements</h4>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="_format" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="detailIndicateur" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                                                                                    
+                            </fieldset>
+
+                            <fieldset class="headers">
+                                <legend>Headers</legend>
+
+                                
+                                <p class="tuple">
+                                    <input type="text" class="key" placeholder="Key" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                                </p>
+
+                                <button type="button" class="add_header">New header</button>
+                            </fieldset>
+
+                            <fieldset class="request-content">
+                                <legend>Content</legend>
+
+                                <textarea class="content" placeholder="Content set here will override the parameters that do not match the url"></textarea>
+
+                                <p class="tuple">
+                                    <input type="text" class="key content-type" value="Content-Type" disabled="disabled" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" />
+                                    <button  type="button" class="set-content-type">Set header</button> <small>Replaces header if set</small>
+                                </p>
+                            </fieldset>
+
+                            <div class="buttons">
+                                <input type="submit" value="Try!" />
+                            </div>
+                        </form>
+
+                        <script type="text/x-tmpl" class="parameters_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                            </select>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+                        <script type="text/x-tmpl" class="headers_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+
+                        <div class="result">
+                            <h4>Request URL</h4>
+                            <pre class="url"></pre>
+
+                            <h4>Response Headers&nbsp;<small>[<a href="" class="to-expand">Expand</a>]</small>&nbsp;<small class="profiler">[<a href="" class="profiler-link" target="_blank">Profiler</a>]</small></h4>
+                            <pre class="headers to-expand"></pre>
+
+                            <h4>Response Body&nbsp;<small>[<a href="" class="to-raw">Raw</a>]</small></h4>
+                            <pre class="response prettyprint"></pre>
+                        </div>
+                                    </div>
+                    </div>
+    </div>
+</li>
+                                                            <li class="delete operation" id="delete--details-{detailIndicateur}-indicateur.{_format}">
+    <div class="heading toggler" data-href="#delete--details-{detailIndicateur}-indicateur.{_format}">
+        <h3>
+            <span class="http_method">
+                <i>DELETE</i>
+            </span>
+
+            
+                        
+            <span class="path">
+                /details/{detailIndicateur}/indicateur.{_format}
+            </span>
+                   </h3>
+        <ul class="options">
+                            <li>Supprime le detail d&#039;un indicateur</li>
+                    </ul>
+    </div>
+
+    <div class="content" style="display: none;">
+        <ul class="tabs">
+            <li class="selected" data-pane="content">Documentation</li>
+                            <li data-pane="sandbox">Sandbox</li>
+                    </ul>
+
+        <div class="panes">
+            <div class="pane content selected">
+            
+            
+                            <h4>Requirements</h4>
+                <table class="fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Requirement</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                    <tr>
+                                <td>_format</td>
+                                <td>json|xml|html</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>detailIndicateur</td>
+                                <td></td>
+                                <td>DetailIndicateur</td>
+                                <td></td>
+                            </tr>
+                                            </tbody>
+                </table>
+            
+            
+            
+            
+                            <h4>Status Codes</h4>
+                <table class="fullwidth">
+                    <thead>
+                    <tr>
+                        <th>Status Code</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                                            <tr>
+                            <td><a href="http://en.wikipedia.org/wiki/HTTP_204" target="_blank">204</a></td>
+                            <td>
+                                <ul>
+                                                                            <li>Suppression reussie</li>
+                                                                    </ul>
+                            </td>
+                        </tr>
+                                        </tbody>
+                </table>
+            
+            
+            </div>
+
+                            <div class="pane sandbox">
+                                            <form method="DELETE" action="/details/{detailIndicateur}/indicateur.{_format}">
+                            <fieldset class="parameters">
+                                <legend>Input</legend>
+                                                                    <h4>Requirements</h4>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="_format" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="detailIndicateur" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                                                                                    
+                            </fieldset>
+
+                            <fieldset class="headers">
+                                <legend>Headers</legend>
+
+                                
+                                <p class="tuple">
+                                    <input type="text" class="key" placeholder="Key" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                                </p>
+
+                                <button type="button" class="add_header">New header</button>
+                            </fieldset>
+
+                            <fieldset class="request-content">
+                                <legend>Content</legend>
+
+                                <textarea class="content" placeholder="Content set here will override the parameters that do not match the url"></textarea>
+
+                                <p class="tuple">
+                                    <input type="text" class="key content-type" value="Content-Type" disabled="disabled" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" />
+                                    <button  type="button" class="set-content-type">Set header</button> <small>Replaces header if set</small>
+                                </p>
+                            </fieldset>
+
+                            <div class="buttons">
+                                <input type="submit" value="Try!" />
+                            </div>
+                        </form>
+
+                        <script type="text/x-tmpl" class="parameters_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                            </select>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+                        <script type="text/x-tmpl" class="headers_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+
+                        <div class="result">
+                            <h4>Request URL</h4>
+                            <pre class="url"></pre>
+
+                            <h4>Response Headers&nbsp;<small>[<a href="" class="to-expand">Expand</a>]</small>&nbsp;<small class="profiler">[<a href="" class="profiler-link" target="_blank">Profiler</a>]</small></h4>
+                            <pre class="headers to-expand"></pre>
+
+                            <h4>Response Body&nbsp;<small>[<a href="" class="to-raw">Raw</a>]</small></h4>
+                            <pre class="response prettyprint"></pre>
+                        </div>
+                                    </div>
+                    </div>
+    </div>
+</li>
                                                             <li class="get operation" id="get--indicateurs.{_format}">
     <div class="heading toggler" data-href="#get--indicateurs.{_format}">
         <h3>
@@ -669,7 +1327,7 @@ form .request-content {
                     <tbody>
                                                     <tr>
                                 <td>_format</td>
-                                <td>json</td>
+                                <td>json|xml|html</td>
                                 <td></td>
                                 <td></td>
                             </tr>
@@ -679,6 +1337,25 @@ form .request-content {
             
             
             
+                            <h4>Status Codes</h4>
+                <table class="fullwidth">
+                    <thead>
+                    <tr>
+                        <th>Status Code</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                                            <tr>
+                            <td><a href="http://en.wikipedia.org/wiki/HTTP_200" target="_blank">200</a></td>
+                            <td>
+                                <ul>
+                                                                            <li>Operation reussie</li>
+                                                                    </ul>
+                            </td>
+                        </tr>
+                                        </tbody>
+                </table>
             
             
             </div>
@@ -941,7 +1618,7 @@ form .request-content {
             </span>
                    </h3>
         <ul class="options">
-                            <li>Les details d&#039;un indicateur</li>
+                            <li>Les informations d&#039;un indicateur</li>
                     </ul>
     </div>
 
@@ -975,7 +1652,7 @@ form .request-content {
                                                     <tr>
                                 <td>indicateur</td>
                                 <td></td>
-                                <td>Indicateur</td>
+                                <td></td>
                                 <td></td>
                             </tr>
                                             </tbody>
@@ -998,6 +1675,22 @@ form .request-content {
                             <td>
                                 <ul>
                                                                             <li>Operation reussie</li>
+                                                                    </ul>
+                            </td>
+                        </tr>
+                                            <tr>
+                            <td><a href="http://en.wikipedia.org/wiki/HTTP_400" target="_blank">400</a></td>
+                            <td>
+                                <ul>
+                                                                            <li>Donnees invalide</li>
+                                                                    </ul>
+                            </td>
+                        </tr>
+                                            <tr>
+                            <td><a href="http://en.wikipedia.org/wiki/HTTP_403" target="_blank">403</a></td>
+                            <td>
+                                <ul>
+                                                                            <li>Forbidden</li>
                                                                     </ul>
                             </td>
                         </tr>
@@ -1093,6 +1786,1170 @@ form .request-content {
                     </div>
     </div>
 </li>
+                                                            <li class="put operation" id="put--indicateurs-{indicateur}.{_format}">
+    <div class="heading toggler" data-href="#put--indicateurs-{indicateur}.{_format}">
+        <h3>
+            <span class="http_method">
+                <i>PUT</i>
+            </span>
+
+            
+                        
+            <span class="path">
+                /indicateurs/{indicateur}.{_format}
+            </span>
+                   </h3>
+        <ul class="options">
+                            <li>Modifier un indicateur</li>
+                    </ul>
+    </div>
+
+    <div class="content" style="display: none;">
+        <ul class="tabs">
+            <li class="selected" data-pane="content">Documentation</li>
+                            <li data-pane="sandbox">Sandbox</li>
+                    </ul>
+
+        <div class="panes">
+            <div class="pane content selected">
+            
+            
+                            <h4>Requirements</h4>
+                <table class="fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Requirement</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                    <tr>
+                                <td>_format</td>
+                                <td>json|xml|html</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>indicateur</td>
+                                <td></td>
+                                <td>Indicateur</td>
+                                <td></td>
+                            </tr>
+                                            </tbody>
+                </table>
+            
+            
+            
+            
+                            <h4>Status Codes</h4>
+                <table class="fullwidth">
+                    <thead>
+                    <tr>
+                        <th>Status Code</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                                            <tr>
+                            <td><a href="http://en.wikipedia.org/wiki/HTTP_200" target="_blank">200</a></td>
+                            <td>
+                                <ul>
+                                                                            <li>Modification reussie</li>
+                                                                    </ul>
+                            </td>
+                        </tr>
+                                            <tr>
+                            <td><a href="http://en.wikipedia.org/wiki/HTTP_400" target="_blank">400</a></td>
+                            <td>
+                                <ul>
+                                                                            <li>Donnees invalide</li>
+                                                                    </ul>
+                            </td>
+                        </tr>
+                                        </tbody>
+                </table>
+            
+            
+            </div>
+
+                            <div class="pane sandbox">
+                                            <form method="PUT" action="/indicateurs/{indicateur}.{_format}">
+                            <fieldset class="parameters">
+                                <legend>Input</legend>
+                                                                    <h4>Requirements</h4>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="_format" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="indicateur" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                                                                                    
+                            </fieldset>
+
+                            <fieldset class="headers">
+                                <legend>Headers</legend>
+
+                                
+                                <p class="tuple">
+                                    <input type="text" class="key" placeholder="Key" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                                </p>
+
+                                <button type="button" class="add_header">New header</button>
+                            </fieldset>
+
+                            <fieldset class="request-content">
+                                <legend>Content</legend>
+
+                                <textarea class="content" placeholder="Content set here will override the parameters that do not match the url"></textarea>
+
+                                <p class="tuple">
+                                    <input type="text" class="key content-type" value="Content-Type" disabled="disabled" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" />
+                                    <button  type="button" class="set-content-type">Set header</button> <small>Replaces header if set</small>
+                                </p>
+                            </fieldset>
+
+                            <div class="buttons">
+                                <input type="submit" value="Try!" />
+                            </div>
+                        </form>
+
+                        <script type="text/x-tmpl" class="parameters_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                            </select>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+                        <script type="text/x-tmpl" class="headers_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+
+                        <div class="result">
+                            <h4>Request URL</h4>
+                            <pre class="url"></pre>
+
+                            <h4>Response Headers&nbsp;<small>[<a href="" class="to-expand">Expand</a>]</small>&nbsp;<small class="profiler">[<a href="" class="profiler-link" target="_blank">Profiler</a>]</small></h4>
+                            <pre class="headers to-expand"></pre>
+
+                            <h4>Response Body&nbsp;<small>[<a href="" class="to-raw">Raw</a>]</small></h4>
+                            <pre class="response prettyprint"></pre>
+                        </div>
+                                    </div>
+                    </div>
+    </div>
+</li>
+                                                            <li class="delete operation" id="delete--indicateurs-{indicateur}.{_format}">
+    <div class="heading toggler" data-href="#delete--indicateurs-{indicateur}.{_format}">
+        <h3>
+            <span class="http_method">
+                <i>DELETE</i>
+            </span>
+
+            
+                        
+            <span class="path">
+                /indicateurs/{indicateur}.{_format}
+            </span>
+                   </h3>
+        <ul class="options">
+                            <li>Supprime un indicateur</li>
+                    </ul>
+    </div>
+
+    <div class="content" style="display: none;">
+        <ul class="tabs">
+            <li class="selected" data-pane="content">Documentation</li>
+                            <li data-pane="sandbox">Sandbox</li>
+                    </ul>
+
+        <div class="panes">
+            <div class="pane content selected">
+            
+            
+                            <h4>Requirements</h4>
+                <table class="fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Requirement</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                    <tr>
+                                <td>_format</td>
+                                <td>json|xml|html</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>indicateur</td>
+                                <td></td>
+                                <td>Indicateur</td>
+                                <td></td>
+                            </tr>
+                                            </tbody>
+                </table>
+            
+            
+            
+            
+                            <h4>Status Codes</h4>
+                <table class="fullwidth">
+                    <thead>
+                    <tr>
+                        <th>Status Code</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                                            <tr>
+                            <td><a href="http://en.wikipedia.org/wiki/HTTP_204" target="_blank">204</a></td>
+                            <td>
+                                <ul>
+                                                                            <li>Suppression reussie</li>
+                                                                    </ul>
+                            </td>
+                        </tr>
+                                        </tbody>
+                </table>
+            
+            
+            </div>
+
+                            <div class="pane sandbox">
+                                            <form method="DELETE" action="/indicateurs/{indicateur}.{_format}">
+                            <fieldset class="parameters">
+                                <legend>Input</legend>
+                                                                    <h4>Requirements</h4>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="_format" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="indicateur" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                                                                                    
+                            </fieldset>
+
+                            <fieldset class="headers">
+                                <legend>Headers</legend>
+
+                                
+                                <p class="tuple">
+                                    <input type="text" class="key" placeholder="Key" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                                </p>
+
+                                <button type="button" class="add_header">New header</button>
+                            </fieldset>
+
+                            <fieldset class="request-content">
+                                <legend>Content</legend>
+
+                                <textarea class="content" placeholder="Content set here will override the parameters that do not match the url"></textarea>
+
+                                <p class="tuple">
+                                    <input type="text" class="key content-type" value="Content-Type" disabled="disabled" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" />
+                                    <button  type="button" class="set-content-type">Set header</button> <small>Replaces header if set</small>
+                                </p>
+                            </fieldset>
+
+                            <div class="buttons">
+                                <input type="submit" value="Try!" />
+                            </div>
+                        </form>
+
+                        <script type="text/x-tmpl" class="parameters_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                            </select>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+                        <script type="text/x-tmpl" class="headers_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+
+                        <div class="result">
+                            <h4>Request URL</h4>
+                            <pre class="url"></pre>
+
+                            <h4>Response Headers&nbsp;<small>[<a href="" class="to-expand">Expand</a>]</small>&nbsp;<small class="profiler">[<a href="" class="profiler-link" target="_blank">Profiler</a>]</small></h4>
+                            <pre class="headers to-expand"></pre>
+
+                            <h4>Response Body&nbsp;<small>[<a href="" class="to-raw">Raw</a>]</small></h4>
+                            <pre class="response prettyprint"></pre>
+                        </div>
+                                    </div>
+                    </div>
+    </div>
+</li>
+                                                            <li class="get operation" id="get--unites.{_format}">
+    <div class="heading toggler" data-href="#get--unites.{_format}">
+        <h3>
+            <span class="http_method">
+                <i>GET</i>
+            </span>
+
+            
+                        
+            <span class="path">
+                /unites.{_format}
+            </span>
+                   </h3>
+        <ul class="options">
+                            <li>Liste des unites</li>
+                    </ul>
+    </div>
+
+    <div class="content" style="display: none;">
+        <ul class="tabs">
+            <li class="selected" data-pane="content">Documentation</li>
+                            <li data-pane="sandbox">Sandbox</li>
+                    </ul>
+
+        <div class="panes">
+            <div class="pane content selected">
+            
+            
+                            <h4>Requirements</h4>
+                <table class="fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Requirement</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                    <tr>
+                                <td>_format</td>
+                                <td>json|xml|html</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                                            </tbody>
+                </table>
+            
+            
+            
+            
+                            <h4>Status Codes</h4>
+                <table class="fullwidth">
+                    <thead>
+                    <tr>
+                        <th>Status Code</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                                            <tr>
+                            <td><a href="http://en.wikipedia.org/wiki/HTTP_200" target="_blank">200</a></td>
+                            <td>
+                                <ul>
+                                                                            <li>Operation reussie</li>
+                                                                    </ul>
+                            </td>
+                        </tr>
+                                        </tbody>
+                </table>
+            
+            
+            </div>
+
+                            <div class="pane sandbox">
+                                            <form method="GET" action="/unites.{_format}">
+                            <fieldset class="parameters">
+                                <legend>Input</legend>
+                                                                    <h4>Requirements</h4>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="_format" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                                                                                    
+                            </fieldset>
+
+                            <fieldset class="headers">
+                                <legend>Headers</legend>
+
+                                
+                                <p class="tuple">
+                                    <input type="text" class="key" placeholder="Key" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                                </p>
+
+                                <button type="button" class="add_header">New header</button>
+                            </fieldset>
+
+                            <fieldset class="request-content">
+                                <legend>Content</legend>
+
+                                <textarea class="content" placeholder="Content set here will override the parameters that do not match the url"></textarea>
+
+                                <p class="tuple">
+                                    <input type="text" class="key content-type" value="Content-Type" disabled="disabled" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" />
+                                    <button  type="button" class="set-content-type">Set header</button> <small>Replaces header if set</small>
+                                </p>
+                            </fieldset>
+
+                            <div class="buttons">
+                                <input type="submit" value="Try!" />
+                            </div>
+                        </form>
+
+                        <script type="text/x-tmpl" class="parameters_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                            </select>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+                        <script type="text/x-tmpl" class="headers_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+
+                        <div class="result">
+                            <h4>Request URL</h4>
+                            <pre class="url"></pre>
+
+                            <h4>Response Headers&nbsp;<small>[<a href="" class="to-expand">Expand</a>]</small>&nbsp;<small class="profiler">[<a href="" class="profiler-link" target="_blank">Profiler</a>]</small></h4>
+                            <pre class="headers to-expand"></pre>
+
+                            <h4>Response Body&nbsp;<small>[<a href="" class="to-raw">Raw</a>]</small></h4>
+                            <pre class="response prettyprint"></pre>
+                        </div>
+                                    </div>
+                    </div>
+    </div>
+</li>
+                                                            <li class="post operation" id="post--unites.{_format}">
+    <div class="heading toggler" data-href="#post--unites.{_format}">
+        <h3>
+            <span class="http_method">
+                <i>POST</i>
+            </span>
+
+            
+                        
+            <span class="path">
+                /unites.{_format}
+            </span>
+                   </h3>
+        <ul class="options">
+                            <li>Cree une nouvelle unite</li>
+                    </ul>
+    </div>
+
+    <div class="content" style="display: none;">
+        <ul class="tabs">
+            <li class="selected" data-pane="content">Documentation</li>
+                            <li data-pane="sandbox">Sandbox</li>
+                    </ul>
+
+        <div class="panes">
+            <div class="pane content selected">
+            
+            
+                            <h4>Requirements</h4>
+                <table class="fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Requirement</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                    <tr>
+                                <td>_format</td>
+                                <td>json|xml|html</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                                            </tbody>
+                </table>
+            
+            
+            
+            
+                            <h4>Status Codes</h4>
+                <table class="fullwidth">
+                    <thead>
+                    <tr>
+                        <th>Status Code</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                                            <tr>
+                            <td><a href="http://en.wikipedia.org/wiki/HTTP_200" target="_blank">200</a></td>
+                            <td>
+                                <ul>
+                                                                            <li>Creation reussie</li>
+                                                                    </ul>
+                            </td>
+                        </tr>
+                                            <tr>
+                            <td><a href="http://en.wikipedia.org/wiki/HTTP_400" target="_blank">400</a></td>
+                            <td>
+                                <ul>
+                                                                            <li>Donnees non valide</li>
+                                                                    </ul>
+                            </td>
+                        </tr>
+                                        </tbody>
+                </table>
+            
+            
+            </div>
+
+                            <div class="pane sandbox">
+                                            <form method="POST" action="/unites.{_format}">
+                            <fieldset class="parameters">
+                                <legend>Input</legend>
+                                                                    <h4>Requirements</h4>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="_format" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                                                                                    
+                            </fieldset>
+
+                            <fieldset class="headers">
+                                <legend>Headers</legend>
+
+                                
+                                <p class="tuple">
+                                    <input type="text" class="key" placeholder="Key" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                                </p>
+
+                                <button type="button" class="add_header">New header</button>
+                            </fieldset>
+
+                            <fieldset class="request-content">
+                                <legend>Content</legend>
+
+                                <textarea class="content" placeholder="Content set here will override the parameters that do not match the url"></textarea>
+
+                                <p class="tuple">
+                                    <input type="text" class="key content-type" value="Content-Type" disabled="disabled" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" />
+                                    <button  type="button" class="set-content-type">Set header</button> <small>Replaces header if set</small>
+                                </p>
+                            </fieldset>
+
+                            <div class="buttons">
+                                <input type="submit" value="Try!" />
+                            </div>
+                        </form>
+
+                        <script type="text/x-tmpl" class="parameters_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                            </select>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+                        <script type="text/x-tmpl" class="headers_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+
+                        <div class="result">
+                            <h4>Request URL</h4>
+                            <pre class="url"></pre>
+
+                            <h4>Response Headers&nbsp;<small>[<a href="" class="to-expand">Expand</a>]</small>&nbsp;<small class="profiler">[<a href="" class="profiler-link" target="_blank">Profiler</a>]</small></h4>
+                            <pre class="headers to-expand"></pre>
+
+                            <h4>Response Body&nbsp;<small>[<a href="" class="to-raw">Raw</a>]</small></h4>
+                            <pre class="response prettyprint"></pre>
+                        </div>
+                                    </div>
+                    </div>
+    </div>
+</li>
+                                                            <li class="get operation" id="get--unites-{unite}.{_format}">
+    <div class="heading toggler" data-href="#get--unites-{unite}.{_format}">
+        <h3>
+            <span class="http_method">
+                <i>GET</i>
+            </span>
+
+            
+                        
+            <span class="path">
+                /unites/{unite}.{_format}
+            </span>
+                   </h3>
+        <ul class="options">
+                            <li>Detail d&#039;une unite</li>
+                    </ul>
+    </div>
+
+    <div class="content" style="display: none;">
+        <ul class="tabs">
+            <li class="selected" data-pane="content">Documentation</li>
+                            <li data-pane="sandbox">Sandbox</li>
+                    </ul>
+
+        <div class="panes">
+            <div class="pane content selected">
+            
+            
+                            <h4>Requirements</h4>
+                <table class="fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Requirement</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                    <tr>
+                                <td>_format</td>
+                                <td>json|xml|html</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>unite</td>
+                                <td></td>
+                                <td>Unite</td>
+                                <td></td>
+                            </tr>
+                                            </tbody>
+                </table>
+            
+            
+            
+            
+                            <h4>Status Codes</h4>
+                <table class="fullwidth">
+                    <thead>
+                    <tr>
+                        <th>Status Code</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                                            <tr>
+                            <td><a href="http://en.wikipedia.org/wiki/HTTP_200" target="_blank">200</a></td>
+                            <td>
+                                <ul>
+                                                                            <li>Operation reussie</li>
+                                                                    </ul>
+                            </td>
+                        </tr>
+                                        </tbody>
+                </table>
+            
+            
+            </div>
+
+                            <div class="pane sandbox">
+                                            <form method="GET" action="/unites/{unite}.{_format}">
+                            <fieldset class="parameters">
+                                <legend>Input</legend>
+                                                                    <h4>Requirements</h4>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="_format" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="unite" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                                                                                    
+                            </fieldset>
+
+                            <fieldset class="headers">
+                                <legend>Headers</legend>
+
+                                
+                                <p class="tuple">
+                                    <input type="text" class="key" placeholder="Key" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                                </p>
+
+                                <button type="button" class="add_header">New header</button>
+                            </fieldset>
+
+                            <fieldset class="request-content">
+                                <legend>Content</legend>
+
+                                <textarea class="content" placeholder="Content set here will override the parameters that do not match the url"></textarea>
+
+                                <p class="tuple">
+                                    <input type="text" class="key content-type" value="Content-Type" disabled="disabled" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" />
+                                    <button  type="button" class="set-content-type">Set header</button> <small>Replaces header if set</small>
+                                </p>
+                            </fieldset>
+
+                            <div class="buttons">
+                                <input type="submit" value="Try!" />
+                            </div>
+                        </form>
+
+                        <script type="text/x-tmpl" class="parameters_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                            </select>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+                        <script type="text/x-tmpl" class="headers_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+
+                        <div class="result">
+                            <h4>Request URL</h4>
+                            <pre class="url"></pre>
+
+                            <h4>Response Headers&nbsp;<small>[<a href="" class="to-expand">Expand</a>]</small>&nbsp;<small class="profiler">[<a href="" class="profiler-link" target="_blank">Profiler</a>]</small></h4>
+                            <pre class="headers to-expand"></pre>
+
+                            <h4>Response Body&nbsp;<small>[<a href="" class="to-raw">Raw</a>]</small></h4>
+                            <pre class="response prettyprint"></pre>
+                        </div>
+                                    </div>
+                    </div>
+    </div>
+</li>
+                                                            <li class="put operation" id="put--unites-{unite}.{_format}">
+    <div class="heading toggler" data-href="#put--unites-{unite}.{_format}">
+        <h3>
+            <span class="http_method">
+                <i>PUT</i>
+            </span>
+
+            
+                        
+            <span class="path">
+                /unites/{unite}.{_format}
+            </span>
+                   </h3>
+        <ul class="options">
+                            <li>Modifier une unite</li>
+                    </ul>
+    </div>
+
+    <div class="content" style="display: none;">
+        <ul class="tabs">
+            <li class="selected" data-pane="content">Documentation</li>
+                            <li data-pane="sandbox">Sandbox</li>
+                    </ul>
+
+        <div class="panes">
+            <div class="pane content selected">
+            
+            
+                            <h4>Requirements</h4>
+                <table class="fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Requirement</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                    <tr>
+                                <td>_format</td>
+                                <td>json|xml|html</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>unite</td>
+                                <td></td>
+                                <td>Unite</td>
+                                <td></td>
+                            </tr>
+                                            </tbody>
+                </table>
+            
+            
+            
+            
+                            <h4>Status Codes</h4>
+                <table class="fullwidth">
+                    <thead>
+                    <tr>
+                        <th>Status Code</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                                            <tr>
+                            <td><a href="http://en.wikipedia.org/wiki/HTTP_200" target="_blank">200</a></td>
+                            <td>
+                                <ul>
+                                                                            <li>Modification reussie</li>
+                                                                    </ul>
+                            </td>
+                        </tr>
+                                            <tr>
+                            <td><a href="http://en.wikipedia.org/wiki/HTTP_400" target="_blank">400</a></td>
+                            <td>
+                                <ul>
+                                                                            <li>Donnees invalide</li>
+                                                                    </ul>
+                            </td>
+                        </tr>
+                                        </tbody>
+                </table>
+            
+            
+            </div>
+
+                            <div class="pane sandbox">
+                                            <form method="PUT" action="/unites/{unite}.{_format}">
+                            <fieldset class="parameters">
+                                <legend>Input</legend>
+                                                                    <h4>Requirements</h4>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="_format" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="unite" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                                                                                    
+                            </fieldset>
+
+                            <fieldset class="headers">
+                                <legend>Headers</legend>
+
+                                
+                                <p class="tuple">
+                                    <input type="text" class="key" placeholder="Key" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                                </p>
+
+                                <button type="button" class="add_header">New header</button>
+                            </fieldset>
+
+                            <fieldset class="request-content">
+                                <legend>Content</legend>
+
+                                <textarea class="content" placeholder="Content set here will override the parameters that do not match the url"></textarea>
+
+                                <p class="tuple">
+                                    <input type="text" class="key content-type" value="Content-Type" disabled="disabled" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" />
+                                    <button  type="button" class="set-content-type">Set header</button> <small>Replaces header if set</small>
+                                </p>
+                            </fieldset>
+
+                            <div class="buttons">
+                                <input type="submit" value="Try!" />
+                            </div>
+                        </form>
+
+                        <script type="text/x-tmpl" class="parameters_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                            </select>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+                        <script type="text/x-tmpl" class="headers_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+
+                        <div class="result">
+                            <h4>Request URL</h4>
+                            <pre class="url"></pre>
+
+                            <h4>Response Headers&nbsp;<small>[<a href="" class="to-expand">Expand</a>]</small>&nbsp;<small class="profiler">[<a href="" class="profiler-link" target="_blank">Profiler</a>]</small></h4>
+                            <pre class="headers to-expand"></pre>
+
+                            <h4>Response Body&nbsp;<small>[<a href="" class="to-raw">Raw</a>]</small></h4>
+                            <pre class="response prettyprint"></pre>
+                        </div>
+                                    </div>
+                    </div>
+    </div>
+</li>
+                                                            <li class="delete operation" id="delete--unites-{unite}.{_format}">
+    <div class="heading toggler" data-href="#delete--unites-{unite}.{_format}">
+        <h3>
+            <span class="http_method">
+                <i>DELETE</i>
+            </span>
+
+            
+                        
+            <span class="path">
+                /unites/{unite}.{_format}
+            </span>
+                   </h3>
+        <ul class="options">
+                            <li>Supprime une unite</li>
+                    </ul>
+    </div>
+
+    <div class="content" style="display: none;">
+        <ul class="tabs">
+            <li class="selected" data-pane="content">Documentation</li>
+                            <li data-pane="sandbox">Sandbox</li>
+                    </ul>
+
+        <div class="panes">
+            <div class="pane content selected">
+            
+            
+                            <h4>Requirements</h4>
+                <table class="fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Requirement</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                                                    <tr>
+                                <td>_format</td>
+                                <td>json|xml|html</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>unite</td>
+                                <td></td>
+                                <td>Unite</td>
+                                <td></td>
+                            </tr>
+                                            </tbody>
+                </table>
+            
+            
+            
+            
+                            <h4>Status Codes</h4>
+                <table class="fullwidth">
+                    <thead>
+                    <tr>
+                        <th>Status Code</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                                            <tr>
+                            <td><a href="http://en.wikipedia.org/wiki/HTTP_204" target="_blank">204</a></td>
+                            <td>
+                                <ul>
+                                                                            <li>Suppression reussie</li>
+                                                                    </ul>
+                            </td>
+                        </tr>
+                                        </tbody>
+                </table>
+            
+            
+            </div>
+
+                            <div class="pane sandbox">
+                                            <form method="DELETE" action="/unites/{unite}.{_format}">
+                            <fieldset class="parameters">
+                                <legend>Input</legend>
+                                                                    <h4>Requirements</h4>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="_format" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                            <p class="tuple">
+                                            <input type="text" class="key" value="unite" placeholder="Key" />
+                                            <span>=</span>
+                                            <input type="text" class="value" placeholder="" /> <span class="remove">-</span>
+                                        </p>
+                                                                                                                                    
+                            </fieldset>
+
+                            <fieldset class="headers">
+                                <legend>Headers</legend>
+
+                                
+                                <p class="tuple">
+                                    <input type="text" class="key" placeholder="Key" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                                </p>
+
+                                <button type="button" class="add_header">New header</button>
+                            </fieldset>
+
+                            <fieldset class="request-content">
+                                <legend>Content</legend>
+
+                                <textarea class="content" placeholder="Content set here will override the parameters that do not match the url"></textarea>
+
+                                <p class="tuple">
+                                    <input type="text" class="key content-type" value="Content-Type" disabled="disabled" />
+                                    <span>=</span>
+                                    <input type="text" class="value" placeholder="Value" />
+                                    <button  type="button" class="set-content-type">Set header</button> <small>Replaces header if set</small>
+                                </p>
+                            </fieldset>
+
+                            <div class="buttons">
+                                <input type="submit" value="Try!" />
+                            </div>
+                        </form>
+
+                        <script type="text/x-tmpl" class="parameters_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <select class="tuple_type">
+                                                <option value="">Type</option>
+                                                <option value="string">String</option>
+                                                <option value="boolean">Boolean</option>
+                                                <option value="file">File</option>
+                                            </select>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+                        <script type="text/x-tmpl" class="headers_tuple_template">
+                        <p class="tuple">
+                            <input type="text" class="key" placeholder="Key" />
+                            <span>=</span>
+                            <input type="text" class="value" placeholder="Value" /> <span class="remove">-</span>
+                        </p>
+                        </script>
+
+
+                        <div class="result">
+                            <h4>Request URL</h4>
+                            <pre class="url"></pre>
+
+                            <h4>Response Headers&nbsp;<small>[<a href="" class="to-expand">Expand</a>]</small>&nbsp;<small class="profiler">[<a href="" class="profiler-link" target="_blank">Profiler</a>]</small></h4>
+                            <pre class="headers to-expand"></pre>
+
+                            <h4>Response Body&nbsp;<small>[<a href="" class="to-raw">Raw</a>]</small></h4>
+                            <pre class="response prettyprint"></pre>
+                        </div>
+                                    </div>
+                    </div>
+    </div>
+</li>
                                                     </ul>
                     </li>
                 </ul>
@@ -1100,7 +2957,7 @@ form .request-content {
                                 </ul>
         </div>
         <p id="colophon">
-            Documentation auto-generated on Tue, 24 Feb 15 18:43:09 +0100
+            Documentation auto-generated on Wed, 25 Feb 15 18:31:48 +0100
         </p>
         <script type="text/javascript">
 
