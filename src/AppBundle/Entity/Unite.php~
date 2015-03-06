@@ -98,4 +98,44 @@ class Unite
     {
         return $this->libelleUnite;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->detailIndicateurs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add detailIndicateurs
+     *
+     * @param \AppBundle\Entity\DetailIndicateur $detailIndicateurs
+     * @return Unite
+     */
+    public function addDetailIndicateur(\AppBundle\Entity\DetailIndicateur $detailIndicateurs)
+    {
+        $this->detailIndicateurs[] = $detailIndicateurs;
+
+        return $this;
+    }
+
+    /**
+     * Remove detailIndicateurs
+     *
+     * @param \AppBundle\Entity\DetailIndicateur $detailIndicateurs
+     */
+    public function removeDetailIndicateur(\AppBundle\Entity\DetailIndicateur $detailIndicateurs)
+    {
+        $this->detailIndicateurs->removeElement($detailIndicateurs);
+    }
+
+    /**
+     * Get detailIndicateurs
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDetailIndicateurs()
+    {
+        return $this->detailIndicateurs;
+    }
 }

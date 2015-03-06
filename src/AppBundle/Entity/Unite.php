@@ -3,12 +3,16 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Unite
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\UniteRepository")
+ * @ExclusionPolicy("all")
  */
 class Unite
 {
@@ -18,6 +22,7 @@ class Unite
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose()
      */
     private $id;
 
@@ -25,13 +30,15 @@ class Unite
      * @var string
      *
      * @ORM\Column(name="codeUnite", type="string", length=255)
+     * @Expose()
      */
     private $codeUnite;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="libelleUnite", type="string", length=255)
+     * @ORM\Column(name="libelleUnite", type="string", length=255, unique=true)
+     * @Expose()
      */
     private $libelleUnite;
 
@@ -137,5 +144,10 @@ class Unite
     public function getDetailIndicateurs()
     {
         return $this->detailIndicateurs;
+    }
+
+    public function update(Unite $newUnite){
+        $this->setCodeUnite($newUnite->getCodeUnite());
+        $this->setLibelleUnite($newUnite->getLibelleUnite());
     }
 }

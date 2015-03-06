@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class DetailIndicateurRepository extends EntityRepository
 {
+    public function findByIndicateur($id){
+        $qb = $this->createQueryBuilder('d')
+            ->leftJoin('d.indicateur','indicateur')
+            ->where('d.indicateur=:id')
+            ->setParameter('id',$id)
+            ->orderBy('d.date','DESC');
+        return $qb->getQuery()->getArrayResult();
+    }
 }

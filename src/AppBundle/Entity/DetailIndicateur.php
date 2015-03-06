@@ -33,6 +33,16 @@ class DetailIndicateur
      *
      * @ORM\ManyToOne(targetEntity="Indicateur")
      */
+
+    /**
+     * @var
+     * @ORM\Column(name="valeur",type="decimal")
+     */
+    private $valeur;
+    /**
+     * @var
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Indicateur", inversedBy="detailIndicateurs")
+     */
     private $indicateur;
 
     /**
@@ -118,5 +128,36 @@ class DetailIndicateur
     public function getUnite()
     {
         return $this->unite;
+    }
+
+    public function update(DetailIndicateur $newDetail)
+    {
+        $this->setDate($newDetail->getDate());
+        $this->setValeur($newDetail->getValeur());
+        $this->setIndicateur($newDetail->getIndicateur());
+        $this->setUnite($newDetail->getUnite());
+    }
+
+    /**
+     * Set valeur
+     *
+     * @param string $valeur
+     * @return DetailIndicateur
+     */
+    public function setValeur($valeur)
+    {
+        $this->valeur = $valeur;
+
+        return $this;
+    }
+
+    /**
+     * Get valeur
+     *
+     * @return string 
+     */
+    public function getValeur()
+    {
+        return $this->valeur;
     }
 }
