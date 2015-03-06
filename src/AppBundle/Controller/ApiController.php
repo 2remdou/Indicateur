@@ -19,7 +19,7 @@ class ApiController extends FOSRestController {
     {
         return $this->getDoctrine()->getEntityManager();
     }
-    protected function deserialize($class, Request $request, $format = 'json')
+    protected function deserialize($class, Request $request, $format = 'json',$groups=null)
     {
         $serializer = $this->get('serializer');
         $validator = $this->get('validator');
@@ -28,7 +28,7 @@ class ApiController extends FOSRestController {
         } catch (RuntimeException $e) {
             throw new HttpException(400, $e->getMessage());
         }
-        if (count($errors = $validator->validate($entity))) {
+        if (count($errors = $validator->validate($entity,$groups))) {
             return $errors;
         }
         return $entity;

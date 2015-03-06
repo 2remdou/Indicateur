@@ -16,6 +16,10 @@ class IndicateurType extends AbstractType
     {
         $builder
             ->add('libelleIndicateur')
+            ->add('typeIndicateur','entity',array(
+                'class' => 'AppBundle:TypeIndicateur',
+                'required' => false,
+            ))
         ;
     }
     
@@ -26,6 +30,7 @@ class IndicateurType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Indicateur',
+            'csrf_protection' => false,
         ));
     }
 

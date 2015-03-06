@@ -79,6 +79,7 @@ nelmio_api_doc:
 fos_rest:
     param_fetcher_listener: true
     body_listener: true
+    allowed_methods_listener: true
     format_listener: true
     routing_loader:
         default_format: json
@@ -91,7 +92,7 @@ fos_rest:
             xml: true
         templating_formats:
             html: true
-#        failed_validation: HTTP_BAD_REQUEST
+        failed_validation: HTTP_BAD_REQUEST
     body_converter:
         enabled: true
     disable_csrf_role: ROLE_API

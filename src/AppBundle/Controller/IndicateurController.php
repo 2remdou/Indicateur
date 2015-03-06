@@ -154,8 +154,7 @@ class IndicateurController extends  ApiController {
      */
     public function postIndicateurAction(){
         $request = $this->get('request');
-        $indicateur = $this->deserialize('AppBundle\Entity\Indicateur',$request);
-        $typeIndicateur = $this->deserialize('AppBundle\Entity\TypeIndicateur',$request);
+        $indicateur = $this->deserialize('AppBundle\Entity\Indicateur',$request,$request->getRequestFormat(),array('registration'));
         if($indicateur instanceof Indicateur === false){
             return $this->view(array('errors'=>$indicateur),400);
         }
@@ -167,12 +166,12 @@ class IndicateurController extends  ApiController {
             $url = $this->generateUrl('get_indicateurs',
                     array(),
                     true).'/'.$indicateur->getId();
-            $response = new Response($typeIndicateur->getLibelleTypeIndicateur());
+            $response = new Response();
             $response->setStatusCode(201);
             $response->headers->set('Location', $url);
 
-//            return $response;
-          return $typeIndicateur;
+            return $response;
+
 
     }
     /**
@@ -213,9 +212,9 @@ class IndicateurController extends  ApiController {
     }
 
     /**
-     * @param Indicateur $indicateur
-     * @return array|\FOS\RestBundle\View\View
-     * @ApiDoc(
+    * @param Indicateur $indicateur
+    * @return array|\FOS\RestBundle\View\View
+    * @ApiDoc(
     *           description="Modifier un indicateur",
     *           statusCodes={
     *               200="Modification reussie",
@@ -228,15 +227,15 @@ class IndicateurController extends  ApiController {
     {
         $request = $this->get('request');
         $em = $this->getEntityManager();
-        $newIndicateur = $this->deserialize('\AppBundle\Entity\Indicateur',$request);
-        if($newIndicateur instanceof Indicateur === false){
+        $newIndicateur = $this->deserialize('AppBundle\Entity\Indicateur',$request);
+        $typeIndicateur = $this->deserialize('AppBundle\Entity\TypeIndicateur',$request);
+/*        if($newIndicateur instanceof Indicateur === false){
             return $this->view(array('errors'=>$newIndicateur),400);
         }
+        $newIndicateur->setTypeIndicateur($typeIndicateur);
         $indicateur->update($newIndicateur);
-        $em->flush();
-
-        return array('indicateur' => $indicateur);
-
+        $em->flush();*/
+        return array('indicateur' => $typeIndicateur);
     }
 
     /**
@@ -307,7 +306,7 @@ class IndicateurController extends  ApiController {
     {
         $request = $this->get('request');
 
-        $detailIndicateur = $this->deserialize("\AppBundle\Entity\DetailIndicateur",$request);
+        $detailIndicateur = $this->deserialize("AppBundle\Entity\DetailIndicateur",$request);
         if($detailIndicateur instanceof DetailIndicateur === false){
             return $this->view(array('errors'=>$detailIndicateur),400);
         }
@@ -341,7 +340,7 @@ class IndicateurController extends  ApiController {
     public function putDetailIndicateur(DetailIndicateur $detailIndicateur)
     {
         $request = $this->get('request');
-        $newDetail = $this->deserialize("\AppBundle\Entity\DetailIndicateur",$request);
+        $newDetail = $this->deserialize("AppBundle\Entity\DetailIndicateur",$request);
         if($newDetail instanceof DetailIndicateur === false){
             return $this->view(array('errors'=>$newDetail),400);
         }

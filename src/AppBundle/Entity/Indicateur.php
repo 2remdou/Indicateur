@@ -31,15 +31,17 @@ class Indicateur
      * @var string
      *
      * @ORM\Column(name="libelleIndicateur", type="string", length=255)
-     * @Assert\NotBlank(message="L'indicateur doit avoir un nom")
+     * @Assert\NotBlank(message="L'indicateur doit avoir un nom", groups={"registration"})
      * @Expose()
      */
+
     private $libelleIndicateur;
 
     /**
      * @var Doctrine\Common\Collections\Collection $detailIndicateurs
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\DetailIndicateur", mappedBy="indicateur")
+     *
      */
     private $detailIndicateurs;
 
@@ -68,6 +70,7 @@ class Indicateur
      */
     public function setLibelleIndicateur($libelleIndicateur)
     {
+
         $this->libelleIndicateur = $libelleIndicateur;
 
         return $this;
