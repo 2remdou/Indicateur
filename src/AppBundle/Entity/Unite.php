@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Unite
@@ -36,7 +37,7 @@ class Unite
     /**
      * @var string
      *
-     * @ORM\Column(name="libelleUnite", type="string", length=255)
+     * @ORM\Column(name="libelleUnite", type="string", length=255, unique=true)
      * @Expose()
      */
     private $libelleUnite;

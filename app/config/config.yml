@@ -83,13 +83,17 @@ fos_rest:
     format_listener: true
     routing_loader:
         default_format: json
+    format_listener:
+        rules:
+            - { path: ^/, priorities: [ html, json, xml ], fallback_format: ~, prefer_extension: true }
     view:
-        view_response_listener: force
+        view_response_listener: 'force'
         force_redirects:
             html: true
         formats:
             json: true
             xml: true
+            html: true
         templating_formats:
             html: true
         failed_validation: HTTP_BAD_REQUEST

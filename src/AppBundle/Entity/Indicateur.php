@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Indicateur
@@ -30,8 +31,13 @@ class Indicateur
     /**
      * @var string
      *
+<<<<<<< HEAD
      * @ORM\Column(name="libelleIndicateur", type="string", length=255)
      * @Assert\NotBlank(message="L'indicateur doit avoir un nom", groups={"registration"})
+=======
+     * @ORM\Column(name="libelleIndicateur", type="string", length=255, unique=true)
+     * @Assert\NotBlank(message="L'indicateur doit avoir un nom")
+>>>>>>> 5f2827c1e2ae703d65f3535886744be7aae4ee85
      * @Expose()
      */
 

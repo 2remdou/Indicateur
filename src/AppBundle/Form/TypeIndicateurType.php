@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class IndicateurType extends AbstractType
+class TypeIndicateurType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,19 +15,7 @@ class IndicateurType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('libelleIndicateur')
-<<<<<<< HEAD
-            ->add('typeIndicateur','entity',array(
-                'class' => 'AppBundle:TypeIndicateur',
-                'required' => false,
-            ))
-=======
-            /*->add('typeIndicateur','entity',array(
-                    'class' => 'AppBundle:TypeIndicateur',
-                    'property' => 'libelleTypeIndicateur'
-                ))*/
-            ->add('typeIndicateur',new TypeIndicateurType())
->>>>>>> 5f2827c1e2ae703d65f3535886744be7aae4ee85
+            ->add('libelleTypeIndicateur')
         ;
     }
     
@@ -37,7 +25,7 @@ class IndicateurType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Indicateur',
+            'data_class' => 'AppBundle\Entity\TypeIndicateur',
             'csrf_protection' => false,
         ));
     }
@@ -47,6 +35,6 @@ class IndicateurType extends AbstractType
      */
     public function getName()
     {
-        return 'indicateur';
+        return 'typeindicateur';
     }
 }

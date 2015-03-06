@@ -5,6 +5,8 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\ExclusionPolicy;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * TypeIndicateur
@@ -28,8 +30,9 @@ class TypeIndicateur
     /**
      * @var string
      *
-     * @ORM\Column(name="libelleTypeIndicateur", type="string", length=255)
+     * @ORM\Column(name="libelleTypeIndicateur", type="string", length=255, unique=true)
      * @Expose()
+     * @Assert\NotBlank(message="Fournissez le libelle type indicateur")
      */
     private $libelleTypeIndicateur;
 
