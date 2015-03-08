@@ -49,6 +49,7 @@ class Indicateur
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TypeIndicateur", inversedBy="indicateur",cascade={"persist","remove"})
      * @Expose()
+     * @ORM\JoinColumn(nullable=false)
      */
     private  $typeIndicateur;
     /**
