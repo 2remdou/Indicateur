@@ -2,11 +2,12 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Form\DataTransformer\DateTimeTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class IndicateurType extends AbstractType
+class DetailIndicateurType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -14,24 +15,13 @@ class IndicateurType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $transformerDateDetail = new DateTimeTransformer();
         $builder
-            ->add('libelleIndicateur')
-<<<<<<< HEAD
-<<<<<<< HEAD
-            ->add('typeIndicateur','entity',array(
-                'class' => 'AppBundle:TypeIndicateur',
-                'required' => false,
-            ))
-=======
-            /*->add('typeIndicateur','entity',array(
-                    'class' => 'AppBundle:TypeIndicateur',
-                    'property' => 'libelleTypeIndicateur'
-                ))*/
-            ->add('typeIndicateur',new TypeIndicateurType())
->>>>>>> 5f2827c1e2ae703d65f3535886744be7aae4ee85
-=======
-
->>>>>>> 5cc51e559f7d061feabada8ac011b5fb73db728a
+            ->add('valeur','number')
+            ->add(
+                $builder->create('dateDetail','text')
+                ->addViewTransformer($transformerDateDetail)
+            )
         ;
     }
     
@@ -41,7 +31,7 @@ class IndicateurType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Indicateur',
+            'data_class' => 'AppBundle\Entity\DetailIndicateur',
             'csrf_protection' => false,
         ));
     }
@@ -51,6 +41,6 @@ class IndicateurType extends AbstractType
      */
     public function getName()
     {
-        return 'indicateur';
+        return 'detailindicateur';
     }
 }

@@ -3,12 +3,16 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * DetailIndicateur
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\DetailIndicateurRepository")
+ * @ExclusionPolicy("all")
  */
 class DetailIndicateur
 {
@@ -24,24 +28,23 @@ class DetailIndicateur
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="dateDetail", type="datetime",nullable=false)
+     * @Expose()
      */
-    private $date;
+    private $dateDetail;
 
-    /**
-     * @var Indicateur $indicateur
-     *
-     * @ORM\ManyToOne(targetEntity="Indicateur")
-     */
 
     /**
      * @var
-     * @ORM\Column(name="valeur",type="decimal")
+     * @ORM\Column(name="valeur",type="decimal",nullable=false)
+     * @Assert\Type(type="numeric",message="la valeur doit etre un numerique")
+     * @Expose()
      */
     private $valeur;
     /**
      * @var
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Indicateur", inversedBy="detailIndicateurs")
+     * @Expose()
      */
     private $indicateur;
 
@@ -49,6 +52,7 @@ class DetailIndicateur
      * @var Unite $unite
      *
      * @ORM\ManyToOne(targetEntity="Unite", inversedBy="detailIndicateurs")
+     * @Expose()
      */
     private $unite;
     /**
@@ -61,28 +65,7 @@ class DetailIndicateur
         return $this->id;
     }
 
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     * @return DetailIndicateur
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime 
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
+    
 
     /**
      * Set indicateur
@@ -159,5 +142,28 @@ class DetailIndicateur
     public function getValeur()
     {
         return $this->valeur;
+    }
+
+    /**
+     * Set dateDetail
+     *
+     * @param \DateTime $dateDetail
+     * @return DetailIndicateur
+     */
+    public function setDateDetail($dateDetail)
+    {
+        $this->dateDetail =new $dateDetail ;
+
+        return $this;
+    }
+
+    /**
+     * Get dateDetail
+     *
+     * @return \DateTime 
+     */
+    public function getDateDetail()
+    {
+        return $this->dateDetail;
     }
 }
