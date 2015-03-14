@@ -73,8 +73,8 @@ swiftmailer:
     spool:     { type: memory }
 
 nelmio_api_doc:
-    sandbox:
-        endpoint: "%api_host%"
+    sandbox: ~
+#        endpoint: "%api_host%"
 
 fos_rest:
     param_fetcher_listener: true
