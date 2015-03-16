@@ -1,0 +1,36 @@
+<form class="form-horizontal">
+    <fieldset>
+        <legend>Les unites des differents indicateurs</legend>
+        <div class="form-group">
+            <label for="codeUnite" class="col-lg-1 control-label">Code unite</label>
+            <div class="col-lg-2">
+                <input type="text" class="form-control" id="codeUnite" placeholder="Code de l'unite (Ex: Mo,Ko,..)">
+            </div>
+            <label for="libelleUnite" class="col-lg-2 control-label">Libelle de l'unite</label>
+            <div class="col-lg-4">
+                <input type="text" class="form-control" id="libelleUnite" placeholder="Le libelle (Ex:Kilo octet)">
+            </div>
+            <div class="col-lg-3">
+                <button type="reset" class="btn btn-default">Annuler</button>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+<table class="table table-striped table-hover ">
+    <thead>
+    <tr>
+        <th>N°</th>
+        <th>Libelle Unite</th>
+        <th>Code unite</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="unite in unites">
+        <td>1</td>
+        <td>{{unite.libelleUnite}}</td>
+        <td>{{unite.codeUnite}}</td>
+    </tr>
+    </tbody>
+</table>

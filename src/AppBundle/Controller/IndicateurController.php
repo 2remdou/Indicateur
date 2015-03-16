@@ -104,7 +104,7 @@ class IndicateurController extends  ApiController {
     {
         $em = $this->getEntityManager();
         $unite = $em->getRepository("AppBundle:Unite")->find($id);
-        return array('unite' => $unite);
+        return $this->view($unite);
     }
 
     /**
@@ -121,7 +121,7 @@ class IndicateurController extends  ApiController {
     {
         $em = $this->getEntityManager();
         $unites = $em->getRepository("AppBundle:Unite")->findAll();
-        return array('unites'=>$unites);
+        return $this->view($unites);
     }
 
     /**
@@ -253,7 +253,7 @@ class IndicateurController extends  ApiController {
         if($indicateur===null) {
             return $this->view(array(),Codes::HTTP_NO_CONTENT);
         }
-        return array('indicateur' => $indicateur);
+        return $this->view($indicateur);
     }
     /**
      *
@@ -349,7 +349,7 @@ class IndicateurController extends  ApiController {
     {
         $em = $this->getEntityManager();
         $detail = $em->getRepository("AppBundle:DetailIndicateur")->find($id);
-        return array('detailIndicateur' => $detail);
+        return $this->view($detail);
     }
 
     /**
