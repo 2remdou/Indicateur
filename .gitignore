@@ -2,6 +2,7 @@
 /app/bootstrap.php.cache
 /app/cache/*
 /web/bower_components
+/web/js/config.js
 /app/config/parameters.yml
 /app/logs/*
 !app/cache/.gitkeep
