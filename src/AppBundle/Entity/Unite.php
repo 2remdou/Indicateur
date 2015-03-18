@@ -7,6 +7,7 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\SerializedName;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Unite
@@ -33,6 +34,7 @@ class Unite
      * @ORM\Column(name="codeUnite", type="string", length=255)
      * @Expose()
      * @SerializedName("codeUnite")
+     * @Assert\NotBlank(message="Veuillez indiquer un code à l'unite")
      */
     private $codeUnite;
 
@@ -42,6 +44,7 @@ class Unite
      * @ORM\Column(name="libelleUnite", type="string", length=255, unique=true)
      * @Expose()
      * @SerializedName("libelleUnite")
+     * @Assert\NotBlank(message="Veuillez indiquer un libelle à l'unite")
      */
     private $libelleUnite;
 

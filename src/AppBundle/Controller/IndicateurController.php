@@ -32,28 +32,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class IndicateurController extends  ApiController {
 
-    /*private function processFormUnite(Unite $unite){
-
-        $form = $this->createForm(new UniteType(),$unite);
-        $request = $this->get('request');
-        $form->submit($request);
-        if($form->isValid()){
-            $em = $this->getEntityManager();
-            $em->persist($unite);
-            $em->flush();
-
-            $routeParam = array(
-                'id' => $unite->getId(),
-                '_format' => $request->get('_format'),
-            );
-            $response = new Response();
-            $response->setStatusCode(Codes::HTTP_CREATED);
-            $response->headers->set('Location',$this->generateUrl('get_unite',$routeParam,true));
-
-            return $response;
-        }
-        return $this->view($form,Codes::HTTP_BAD_REQUEST);
-    }*/
     private function processForm($objet,$objetType,$nameRoute=null){
 
         $form = $this->createForm($objetType,$objet);
@@ -76,10 +54,40 @@ class IndicateurController extends  ApiController {
             }
 
             return $response;
-//            return $objet;
 
         }
         return $this->view($form,Codes::HTTP_BAD_REQUEST);
+    }
+    private function wrapper($nameClass,$nameRoute){
+        $request = $this->get('request');
+        $objet=$this->deserialize($nameClass,$request);
+        if($objet instanceof $nameClass ===false){
+            return $this->view(array('errors'=>$objet),Codes::HTTP_BAD_REQUEST);
+        }
+        $method = $request->getMethod();
+        if($method==="POST"){
+            $statusCode = Codes::HTTP_CREATED;
+        }
+        else{
+            $statusCode = Codes::HTTP_OK;
+        }
+        $em = $this->getEntityManager();
+        $em->persist($objet);
+        $em->flush();
+
+        $routeParam = array(
+            'id' => $objet->getId(),
+            '_format' => $request->get('_format'),
+        );
+        $response = new Response();
+        $response->setStatusCode(Codes::HTTP_CREATED);
+        if($nameRoute){
+
+            $response->headers->set('Location',$this->generateUrl($nameRoute,$routeParam,true));
+        }
+        return $this->view($response,$statusCode);
+
+
     }
 
     /**
@@ -149,8 +157,8 @@ class IndicateurController extends  ApiController {
      */
     public function postUniteAction()
     {
-        $unite = new Unite();
-        return $this->processForm($unite,new UniteType(),'get_unite');
+        return $this->wrapper('AppBundle\Entity\Unite','get_unite');
+
     }
     /**
      * {
