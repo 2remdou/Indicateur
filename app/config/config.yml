@@ -73,8 +73,8 @@ swiftmailer:
     spool:     { type: memory }
 
 nelmio_api_doc:
-    sandbox:
-        endpoint: "%api_host%"
+    sandbox: ~
+#        endpoint: "%api_host%"
 
 fos_rest:
     param_fetcher_listener: true
@@ -106,3 +106,8 @@ sensio_framework_extra:
     router:  { annotations: true }
     request: { converters: true }
     request: { converters: true }
+
+jms_serializer:
+    property_naming:
+        separator:
+        lower_case: false

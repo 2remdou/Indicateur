@@ -1,7 +1,12 @@
 app:
     resource: AppBundle\Controller\IndicateurController
     type:     rest
+    options:
+        expose: true
 
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
