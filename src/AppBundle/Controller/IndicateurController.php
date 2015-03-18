@@ -5,9 +5,7 @@
  * Date: 22/02/15
  * Time: 08:04
  */
-
 namespace AppBundle\Controller;
-
 use AppBundle\Entity\Indicateur;
 use AppBundle\Entity\Unite;
 use AppBundle\Form\DetailIndicateurType;
@@ -29,11 +27,8 @@ use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-
 class IndicateurController extends  ApiController {
-
     private function processForm($objet,$objetType,$nameRoute=null){
-
         $form = $this->createForm($objetType,$objet);
         $request = $this->get('request');
         $form->submit($request);
@@ -41,7 +36,6 @@ class IndicateurController extends  ApiController {
             $em = $this->getEntityManager();
             $em->persist($objet);
             $em->flush();
-
             $routeParam = array(
                 'id' => $objet->getId(),
                 '_format' => $request->get('_format'),
@@ -49,12 +43,9 @@ class IndicateurController extends  ApiController {
             $response = new Response();
             $response->setStatusCode(Codes::HTTP_CREATED);
             if($nameRoute){
-
                 $response->headers->set('Location',$this->generateUrl($nameRoute,$routeParam,true));
             }
-
             return $response;
-
         }
         return $this->view($form,Codes::HTTP_BAD_REQUEST);
     }
@@ -74,7 +65,6 @@ class IndicateurController extends  ApiController {
         $em = $this->getEntityManager();
         $em->persist($objet);
         $em->flush();
-
         $routeParam = array(
             'id' => $objet->getId(),
             '_format' => $request->get('_format'),
@@ -82,14 +72,10 @@ class IndicateurController extends  ApiController {
         $response = new Response();
         $response->setStatusCode(Codes::HTTP_CREATED);
         if($nameRoute){
-
             $response->headers->set('Location',$this->generateUrl($nameRoute,$routeParam,true));
         }
         return $this->view($response,$statusCode);
-
-
     }
-
     /**
      * @Route("/", name="homepage", options={"expose"=true})
      */
@@ -114,7 +100,6 @@ class IndicateurController extends  ApiController {
         $unite = $em->getRepository("AppBundle:Unite")->find($id);
         return $this->view($unite);
     }
-
     /**
      * @ApiDoc(
      *      description= "Liste des unites",
@@ -131,7 +116,6 @@ class IndicateurController extends  ApiController {
         $unites = $em->getRepository("AppBundle:Unite")->findAll();
         return $this->view($unites);
     }
-
     /**
      * {
      *       "unite":
@@ -158,7 +142,6 @@ class IndicateurController extends  ApiController {
     public function postUniteAction()
     {
         return $this->wrapper('AppBundle\Entity\Unite','get_unite');
-
     }
     /**
      * {
@@ -184,7 +167,6 @@ class IndicateurController extends  ApiController {
         $request = $this->get('request');
         $em = $this->getEntityManager();
         return $this->processForm($unite,new UniteType(),'get_unite');
-
     }
     /**
      * @param Unite $unite
@@ -203,7 +185,6 @@ class IndicateurController extends  ApiController {
         $request = $this->get('request');
         $em = $this->getEntityManager();
         return $this->processForm($unite,new UniteType(),'get_unite');
-
     }
     /**
      * @param Unite $unite
@@ -221,45 +202,7 @@ class IndicateurController extends  ApiController {
         $em = $this->getEntityManager();
         $em->remove($unite);
         $em->flush();
-
     }
-<<<<<<< HEAD
-
-    /**
-     * @ApiDoc(
-     *      description= "Cree un nouvel indicateur",
-     *      statusCodes={
-     *          200="Creation reussie",
-     *          400="Donnees non valide"
-     *      }
-     *
-     * )
-     * @View()
-     */
-    public function postIndicateurAction(){
-        $request = $this->get('request');
-        $indicateur = $this->deserialize('AppBundle\Entity\Indicateur',$request,$request->getRequestFormat(),array('registration'));
-        if($indicateur instanceof Indicateur === false){
-            return $this->view(array('errors'=>$indicateur),400);
-        }
-
-            $em = $this->getEntityManager();
-            $em->persist($indicateur);
-            $em->flush();
-
-            $url = $this->generateUrl('get_indicateurs',
-                    array(),
-                    true).'/'.$indicateur->getId();
-            $response = new Response();
-            $response->setStatusCode(201);
-            $response->headers->set('Location', $url);
-
-            return $response;
-
-
-    }
-=======
->>>>>>> 5f2827c1e2ae703d65f3535886744be7aae4ee85
     /**
      * @ApiDoc(
      *      description= "Liste des indicateurs",
@@ -275,10 +218,8 @@ class IndicateurController extends  ApiController {
         $request = $this->get('request');
         $em = $this->getDoctrine()->getManager();
         $indicateurs = $em->getRepository("AppBundle:Indicateur")->findAll();
-
         return $this->view($indicateurs);
     }
-
     /**
      * @ApiDoc(
      *       description="Les informations d'un indicateur",
@@ -291,51 +232,14 @@ class IndicateurController extends  ApiController {
      *
      * @View()
      */
-<<<<<<< HEAD
-    public function getIndicateurAction(Indicateur $indicateur)
-    {
-        return array('indicateur' => $indicateur);
-    }
-
-    /**
-    * @param Indicateur $indicateur
-    * @return array|\FOS\RestBundle\View\View
-    * @ApiDoc(
-    *           description="Modifier un indicateur",
-    *           statusCodes={
-    *               200="Modification reussie",
-    *               400="Donnees invalide"
-    *           }
-    *   )
-    * @ParamConverter("indicateur",class="AppBundle:Indicateur")
-    */
-    public function  putIndicateurAction(Indicateur $indicateur)
-=======
     public function getIndicateurAction($id)
->>>>>>> 5f2827c1e2ae703d65f3535886744be7aae4ee85
     {
         $em = $this->getEntityManager();
-<<<<<<< HEAD
-        $newIndicateur = $this->deserialize('AppBundle\Entity\Indicateur',$request);
-        $typeIndicateur = $this->deserialize('AppBundle\Entity\TypeIndicateur',$request);
-/*        if($newIndicateur instanceof Indicateur === false){
-            return $this->view(array('errors'=>$newIndicateur),400);
-        }
-        $newIndicateur->setTypeIndicateur($typeIndicateur);
-        $indicateur->update($newIndicateur);
-        $em->flush();*/
-        return array('indicateur' => $typeIndicateur);
-=======
         $indicateur = $em->getRepository("AppBundle:Indicateur")->find($id);
         if($indicateur===null) {
             return $this->view(array(),Codes::HTTP_NO_CONTENT);
         }
-<<<<<<< HEAD
-        return array('indicateur' => $indicateur);
->>>>>>> 5f2827c1e2ae703d65f3535886744be7aae4ee85
-=======
         return $this->view($indicateur);
->>>>>>> 39efe10935051156a5133700d0369162b865a507
     }
     /**
      *
@@ -368,34 +272,9 @@ class IndicateurController extends  ApiController {
      */
     public function postIndicateurAction(TypeIndicateur $typeIndicateur)
     {
-<<<<<<< HEAD
-        $request = $this->get('request');
-
-        $detailIndicateur = $this->deserialize("AppBundle\Entity\DetailIndicateur",$request);
-        if($detailIndicateur instanceof DetailIndicateur === false){
-            return $this->view(array('errors'=>$detailIndicateur),400);
-        }
-
-        $em = $this->getEntityManager();
-        $em->persist($detailIndicateur);
-        $em->flush();
-
-        $url = $this->generateUrl('get_detail_indicateurs',
-            array(),
-            true).'/'.$detailIndicateur->getId();
-
-        $response = new Response();
-        $response->setStatusCode(201);
-        $response->headers->set('Location',$url);
-=======
         $indicateur = new Indicateur();
-<<<<<<< HEAD
-        return $this->processForm($indicateur,new IndicateurType(),array('AppBundle\Entity\TypeIndicateur'));
->>>>>>> 5f2827c1e2ae703d65f3535886744be7aae4ee85
-=======
         $indicateur->setTypeIndicateur($typeIndicateur);
         return $this->processForm($indicateur,new IndicateurType(),'get_indicateur');
->>>>>>> 5cc51e559f7d061feabada8ac011b5fb73db728a
     }
     /**
      * @param TypeIndicateur $typeIndicateur
@@ -416,26 +295,10 @@ class IndicateurController extends  ApiController {
     public function  putIndicateurAction(TypeIndicateur $typeIndicateur,Indicateur $indicateur)
     {
         $em = $this->getEntityManager();
-<<<<<<< HEAD
-        $request = $this->get('request');
-<<<<<<< HEAD
-        $newDetail = $this->deserialize("AppBundle\Entity\DetailIndicateur",$request);
-        if($newDetail instanceof DetailIndicateur === false){
-            return $this->view(array('errors'=>$newDetail),400);
-        }
-
-        $detailIndicateur->update($newDetail);
-=======
-        $newIndicateur = new Indicateur();
-        $newIndicateur= $this->processForm($newIndicateur,new IndicateurType(),array('AppBundle\Entity\TypeIndicateur'));
->>>>>>> 5f2827c1e2ae703d65f3535886744be7aae4ee85
-=======
         if($typeIndicateur !== $indicateur->getTypeIndicateur())
         {
             $indicateur->setTypeIndicateur($typeIndicateur);
         }
->>>>>>> 5cc51e559f7d061feabada8ac011b5fb73db728a
-
         return $this->processForm($indicateur,new IndicateurType(),'get_indicateur');
     }
     /**
@@ -473,7 +336,6 @@ class IndicateurController extends  ApiController {
         $detail = $em->getRepository("AppBundle:DetailIndicateur")->find($id);
         return $this->view($detail);
     }
-
     /**
      *  @ApiDoc(
      *      description="Tous les details de tous les indicateurs",
@@ -488,7 +350,6 @@ class IndicateurController extends  ApiController {
         $em = $this->getEntityManager();
         $details = $em->getRepository("AppBundle:DetailIndicateur")->findAll();
         $this->view($details,200);
-
     }
     /**
      * @ApiDoc(
@@ -535,7 +396,6 @@ class IndicateurController extends  ApiController {
             $detailIndicateur->setIndicateur($indicateur);
         if($detailIndicateur->getUnite() !== $unite)
             $detailIndicateur->setUnite($unite);
-
         return $this->processForm($detailIndicateur,new DetailIndicateurType(),'get_detail_indicateur');
     }
     /**
@@ -562,7 +422,6 @@ class IndicateurController extends  ApiController {
             $detailIndicateur->setIndicateur($indicateur);
         if($detailIndicateur->getUnite() !== $unite)
             $detailIndicateur->setUnite($unite);
-
         return $this->processForm($detailIndicateur,new DetailIndicateurType(),'get_detail_indicateur');
     }
     /**

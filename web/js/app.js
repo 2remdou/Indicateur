@@ -17,7 +17,7 @@ app.config(['$routeProvider',function($routeProvider){
 }]);
 
 app.config(function(RestangularProvider){
-    RestangularProvider.setBaseUrl('http://localhost:8888/indicateur/web/app_dev.php');
+    RestangularProvider.setBaseUrl(getBaseUrl());
     RestangularProvider.setRequestSuffix('.json');
 });
 
