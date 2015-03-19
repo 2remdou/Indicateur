@@ -5,14 +5,15 @@
 app.directive('indLoading',function($rootScope){
    return {
        restrict : 'EA',
+       replace : true,
        templateUrl: 'js/view/loading.html',
        transclude : true,
        scope : {
+           loading : "=valeurLoading"
        },
        link : function(scope,element,attribs){
-           scope.loading=$rootScope.loading;
-           scope.$on('onLoading',function(e){
-              scope.loading=false;
+           $rootScope.$watch($rootScope.loading,function(){
+               scope.loading=$rootScope.loading;
            });
        }
 
