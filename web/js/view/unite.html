@@ -27,12 +27,14 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="unite in unites">
-        <td>{{$index+1}}</td>
-        <td>{{unite.libelleUnite}}</td>
-        <td>{{unite.codeUnite}}</td>
-        <td><button class="btn btn-info" ng-click="editUnite(unite)">Modifier</button></td>
-        <td><button class="btn btn-info" ng-click="deleteUnite(unite)">Supprimer</button></td>
-    </tr>
+    <ind-loading valeur-loading="loading">
+        <tr ng-repeat="unite in unites" >
+            <td>{{$index+1}}</td>
+            <td>{{unite.libelleUnite}}</td>
+            <td>{{unite.codeUnite}}</td>
+            <td><button class="btn btn-info" ng-click="editUnite(unite)">Modifier</button></td>
+            <td><button class="btn btn-info" ng-click="deleteUnite(unite)">Supprimer</button></td>
+        </tr>
+    </ind-loading>
     </tbody>
 </table>
