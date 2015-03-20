@@ -21,6 +21,12 @@ app.config(function(RestangularProvider){
     RestangularProvider.setRequestSuffix('.json');
 });
 
+/*
+app.config(['$rootScope',function($rootScope){
+    $rootScope.showMessage = false;
+}]);
+*/
+
 var getRoute = function(routeName,parametres){
 
     return Routing.generate(routeName,{},false).slice(1);

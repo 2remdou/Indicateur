@@ -4,14 +4,12 @@
 app.controller('UniteController',['$scope','Restangular','$rootScope','uniteFactory',
     function($scope,Restangular,$rootScope,uniteFactory){
         $rootScope.loading=true;
+        $rootScope.showMessage=false;
+        console.log("1"+$rootScope.showMessage);
             uniteFactory.getList().then(function(unites){
                 $scope.unites = unites;
                 $rootScope.loading=false;
-                $rootScope.message={
-                    message:"Enregistrement effectué",
-                    typealert:"info"
-                };
-                $rootScope.$broadcast('onShowMessage');
+                //$rootScope.$broadcast('onShowMessage');
             });
 
         $scope.newUnite = {};
@@ -19,6 +17,10 @@ app.controller('UniteController',['$scope','Restangular','$rootScope','uniteFact
             uniteFactory.post($scope.newUnite).then(function(u){
                 $scope.unites.push($scope.newUnite);
                 $scope.newUnite = {};
+                $rootScope.showMessage=true;
+
+                $rootScope.message="Enregistrement effectué";
+                $rootScope.typealert="info";
             });
         };
 
