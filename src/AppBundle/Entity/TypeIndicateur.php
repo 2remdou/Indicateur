@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\SerializedName;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -14,6 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\TypeIndicateurRepository")
  * @ExclusionPolicy("all")
+ * @UniqueEntity("libelleTypeIndicateur",message="Ce libelle existe deja",groups={"common"})
  */
 class TypeIndicateur
 {
@@ -24,6 +26,7 @@ class TypeIndicateur
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Expose()
+     * @SerializedName("id")
      */
     private $id;
 
@@ -33,6 +36,7 @@ class TypeIndicateur
      * @ORM\Column(name="libelleTypeIndicateur", type="string", length=255, unique=true)
      * @Expose()
      * @Assert\NotBlank(message="Fournissez le libelle type indicateur")
+     * @SerializedName("libelleTypeIndicateur")
      */
     private $libelleTypeIndicateur;
 
@@ -114,5 +118,9 @@ class TypeIndicateur
     public function getIndicateurs()
     {
         return $this->indicateurs;
+    }
+
+    public function update(TypeIndicateur $newTypeIndicateur){
+        $this->setLibelleTypeIndicateur($newTypeIndicateur->getLibelleTypeIndicateur());
     }
 }

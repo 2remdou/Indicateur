@@ -22,9 +22,9 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#/unite">Unite <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Type Indicateur</a></li>
-                <li><a href="#">Indicateur</a></li>
+                <li><a href="#/unites">Unite <span class="sr-only">(current)</span></a></li>
+                <li><a href="#/type-indicateurs">Type Indicateur</a></li>
+                <li><a href="#/indicateurs">Indicateur</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Connexion</a></li>
@@ -32,19 +32,33 @@
         </div>
     </div>
 </nav>
-<ind-message showmessage="{{showMessage}}"></ind-message>
+<ind-message></ind-message>
 <div ng-view></div>
 <script src="bundles/fosjsrouting/js/router.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="js/fos_js_routes.js"></script>
 <script src="bower_components/restangular/src/restangular.js"></script>
 <script src="bower_components/lodash/dist/lodash.min.js"></script>
 <script src="bower_components/angular-route/angular-route.min.js"></script>
 <script src="js/config.js"></script>
 <script src="js/app.js"></script>
-<script src="js/controller/UniteController.js"></script>
+
+<!-------------------------SERVICES--------------------------->
 <script src="js/service/uniteFactory.js"></script>
 <script src="js/service/messageFactory.js"></script>
+<script src="js/service/typeIndicateurFactory.js"></script>
+<script src="js/service/indicateurFactory.js"></script>
+
+<!----------------------CONTROLLERS-------------------------->
+<script src="js/controller/UniteController.js"></script>
+<script src="js/controller/TypeIndicateurController.js"></script>
+<script src="js/controller/IndicateurController.js"></script>
+
+
+<!-------------------------DIRECTIVES--------------------------->
 <script src="js/directive/loading.js"></script>
 <script src="js/directive/message.js"></script>
+<script src="js/directive/deleteModal.js"></script>
 </body>
 </html>

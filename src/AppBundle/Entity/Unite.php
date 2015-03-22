@@ -15,6 +15,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\UniteRepository")
  * @ExclusionPolicy("all")
+ * @UniqueEntity("codeUnite",message="Ce code est deja affecté à une autre unite",groups={"create"})
+ * @UniqueEntity("libelleUnite",message="Ce libelle est deja affecté à une autre unite",groups={"create"})
  */
 class Unite
 {
@@ -25,16 +27,17 @@ class Unite
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Expose()
+     * @SerializedName("id")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="codeUnite", type="string", length=255)
+     * @ORM\Column(name="codeUnite", type="string", length=255, unique=true)
      * @Expose()
      * @SerializedName("codeUnite")
-     * @Assert\NotBlank(message="Veuillez indiquer un code à l'unite")
+     * @Assert\NotBlank(message="Veuillez indiquer un code à l'unite",groups={"common"})
      */
     private $codeUnite;
 
@@ -44,7 +47,7 @@ class Unite
      * @ORM\Column(name="libelleUnite", type="string", length=255, unique=true)
      * @Expose()
      * @SerializedName("libelleUnite")
-     * @Assert\NotBlank(message="Veuillez indiquer un libelle à l'unite")
+     * @Assert\NotBlank(message="Veuillez indiquer un libelle à l'unite",groups={"common"})
      */
     private $libelleUnite;
 

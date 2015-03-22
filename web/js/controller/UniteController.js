@@ -3,9 +3,9 @@
  */
 app.controller('UniteController',['$scope','Restangular','$rootScope','uniteFactory',
     function($scope,Restangular,$rootScope,uniteFactory){
+        intercepErrot(Restangular,$rootScope);
         $rootScope.loading=true;
-        $rootScope.showMessage=false;
-        console.log("1"+$rootScope.showMessage);
+        var baseAccounts = Restangular.all('accounts');
             uniteFactory.getList().then(function(unites){
                 $scope.unites = unites;
                 $rootScope.loading=false;
@@ -14,21 +14,43 @@ app.controller('UniteController',['$scope','Restangular','$rootScope','uniteFact
 
         $scope.newUnite = {};
         $scope.saveUnite = function(){
-            uniteFactory.post($scope.newUnite).then(function(u){
-                $scope.unites.push($scope.newUnite);
-                $scope.newUnite = {};
-                $rootScope.showMessage=true;
+            if($scope.method === "PUT"){
+                $scope.newUnite.put({id:$scope.newUnite.id}).then(function(u){
+                    $scope.newUnite = {};
+                    $rootScope.$broadcast('showMessage',
+                        {messages:["Modification effectuée"],
+                            typeAlert:"success"
+                    }) ;
+                });
+                $scope.method = "POST";
+            }
+            else{
+                uniteFactory.post($scope.newUnite).then(function(u){
+                    $scope.unites.push($scope.newUnite);
+                    $scope.newUnite = {};
+                    $rootScope.$broadcast('showMessage',{
+                        messages:["Enregistrement effectué"],
+                        typeAlert:"success"
+                    });
+                });
+            }
 
-                $rootScope.message="Enregistrement effectué";
-                $rootScope.typealert="info";
-            });
         };
 
         $scope.editUnite = function(unite){
             $scope.newUnite = unite;
+            $scope.method = "PUT"
         };
 
         $scope.deleteUnite = function(unite){
-
+            $scope.unite=unite;
+            unite.remove().then(function(u){
+                $rootScope.$broadcast('showMessage',{
+                    messages:["Suppression effectuée"],
+                    typeAlert:"success"
+                });
+                var index = $scope.unites.indexOf(unite);
+                $scope.unites.splice(index,1);
+            });
         }
 }]);

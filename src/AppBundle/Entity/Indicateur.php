@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\SerializedName;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -14,6 +15,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\IndicateurRepository")
  * @ExclusionPolicy("all")
+ * @UniqueEntity("libelleIndicateur",message="Ce libelle existe deja",groups={"common"})
  */
 
 class Indicateur
@@ -25,20 +27,19 @@ class Indicateur
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Expose()
+     * @SerializedName("id")
      */
     private $id;
 
     /**
      * @var string
      *
-<<<<<<< HEAD
-     * @ORM\Column(name="libelleIndicateur", type="string", length=255)
+     * @ORM\Column(name="libelleIndicateur", type="string", length=255, unique=true)
      * @Assert\NotBlank(message="L'indicateur doit avoir un nom", groups={"registration"})
-=======
      * @ORM\Column(name="libelleIndicateur", type="string", length=255, unique=true)
      * @Assert\NotBlank(message="L'indicateur doit avoir un nom")
->>>>>>> 5f2827c1e2ae703d65f3535886744be7aae4ee85
      * @Expose()
+     * @SerializedName("libelleIndicateur")
      */
 
     private $libelleIndicateur;
@@ -57,6 +58,7 @@ class Indicateur
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TypeIndicateur", inversedBy="indicateur",cascade={"persist","remove"})
      * @Expose()
      * @ORM\JoinColumn(nullable=false)
+     * @SerializedName("typeIndicateur")
      */
     private  $typeIndicateur;
     /**
