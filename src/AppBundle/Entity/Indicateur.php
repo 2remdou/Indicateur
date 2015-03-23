@@ -161,5 +161,6 @@ class Indicateur
     public function update(Indicateur $newIndicateur){
         $this->setLibelleIndicateur($newIndicateur->getLibelleIndicateur());
         $this->setTypeIndicateur($newIndicateur->setTypeIndicateur());
+        $this->setTypeIndicateur($newIndicateur->getTypeIndicateur());
     }
 }

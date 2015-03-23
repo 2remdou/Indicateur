@@ -395,7 +395,7 @@ class IndicateurController extends  ApiController {
             return $this->view(array('errors'=>$indicateur),Codes::HTTP_BAD_REQUEST);
         }
         $indicateur->setTypeIndicateur($typeIndicateur);
-        return $this->save($indicateur,'get_unite') ;
+        return $this->save($indicateur,'get_indicateur') ;
 
     }
     /**
@@ -409,7 +409,7 @@ class IndicateurController extends  ApiController {
      *               400="Donnees invalide"
      *           }
      *   )
-     * @Put("indicateurs/{typeIndicateur}/{indicateur}")
+     * @Put("type-indicateurs/{typeIndicateur}/indicateurs/{indicateur}")
      * @ParamConverter("typeIndicateur",class="AppBundle:TypeIndicateur")
      * @ParamConverter("indicateur",class="AppBundle:Indicateur")
      * @View()
@@ -422,7 +422,7 @@ class IndicateurController extends  ApiController {
             return $this->view(array('errors'=>$newIndicateur),Codes::HTTP_BAD_REQUEST);
         }
         $indicateur->update($newIndicateur);
-        return $this->save($indicateur,'get_unite');
+        return $this->save($indicateur,'get_indicateur');
     }
     /**
      * @param Indicateur $indicateur

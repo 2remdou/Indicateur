@@ -8,6 +8,12 @@ app.controller('UniteController',['$scope','Restangular','$rootScope','uniteFact
         var baseAccounts = Restangular.all('accounts');
             uniteFactory.getList().then(function(unites){
                 $scope.unites = unites;
+                if(unites.length===0){
+                    $rootScope.$broadcast('showMessage',
+                        {messages:["Aucune données pour le moment"],
+                            typeAlert:"info"
+                        }) ;
+                }
                 $rootScope.loading=false;
                 //$rootScope.$broadcast('onShowMessage');
             });

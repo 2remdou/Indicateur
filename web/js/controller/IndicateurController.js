@@ -7,6 +7,12 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                 $rootScope.loading=true;
                     indicateurFactory.getList().then(function(indicateurs){
                         $scope.indicateurs = indicateurs;
+                        if(indicateurs.length===0){
+                            $rootScope.$broadcast('showMessage',
+                                {messages:["Aucune données pour le moment"],
+                                    typeAlert:"info"
+                                }) ;
+                        }
                         $rootScope.loading=false;
                         //$rootScope.$broadcast('onShowMessage');
                     });
@@ -17,7 +23,7 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                 $scope.newIndicateur = {};
                 $scope.saveIndicateur = function(){
                     if($scope.method === "PUT"){
-                        $scope.newIndicateur.put({id:$scope.newIndicateur.id}).then(function(u){
+                        $scope.newIndicateur.one($scope.newIndicateur.typeIndicateur.id).put('indicateurs',{'id':$scope.newIndicateur.id}).then(function(values){
                             $scope.newIndicateur = {};
                             $rootScope.$broadcast('showMessage',
                                 {messages:["Modification effectuée"],

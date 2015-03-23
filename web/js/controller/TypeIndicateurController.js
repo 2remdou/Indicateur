@@ -7,6 +7,12 @@ app.controller('TypeIndicateurController',['$scope','Restangular','$rootScope','
         $rootScope.loading=true;
         typeIndicateurFactory.getList().then(function(typeIndicateurs){
             $scope.typeIndicateurs = typeIndicateurs;
+            if(typeIndicateurs.length===0){
+                $rootScope.$broadcast('showMessage',
+                    {messages:["Aucune données pour le moment"],
+                        typeAlert:"info"
+                    }) ;
+            }
             $rootScope.loading=false;
             //$rootScope.$broadcast('onShowMessage');
         });
