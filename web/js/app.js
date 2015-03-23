@@ -40,7 +40,7 @@ var getRoute = function(routeName,parametres){
 
     return Routing.generate(routeName,{},false).slice(1);
 }
-function intercepErrot(Restangular,$rootScope){
+function intercepError(Restangular,$rootScope){
     Restangular.setErrorInterceptor(function(response, deferred, responseHandler){
         var m = [];
         angular.forEach(response.data.errors,function(value){

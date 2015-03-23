@@ -8,9 +8,11 @@
             </div>
             <label for="typeIndicateur" class="col-lg-2 control-label">Type Indicateur</label>
             <div class="col-lg-2">
-                <select class="form-control" id="typeIndicateur" ng-model="newIndicateur.typeIndicateur.id">
-                    <option value=""></option>
-                    <option value="{{typeIndicateur.id}}" ng-repeat="typeIndicateur in typeIndicateurs">{{typeIndicateur.libelleTypeIndicateur}}</option>
+                <select class="form-control" id="typeIndicateur" ng-model="newIndicateur.typeIndicateur" ng-options="typeIndicateur.libelleTypeIndicateur for typeIndicateur in typeIndicateurs">
+                    <!--<option value=""></option>
+                    <option value="{{typeIndicateur.id}}" ng-repeat="typeIndicateur in typeIndicateurs" ng-model="newIndicateur.typeIndicateur.libelleTypeIndicateur" ng-change="changeTypeIndicateur(typeIndicateur)" >
+                        {{typeIndicateur.libelleTypeIndicateur}}
+                    </option>-->
                 </select>
             </div>
             <div>

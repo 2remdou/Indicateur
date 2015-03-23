@@ -3,7 +3,7 @@
  */
 app.controller('UniteController',['$scope','Restangular','$rootScope','uniteFactory',
     function($scope,Restangular,$rootScope,uniteFactory){
-        intercepErrot(Restangular,$rootScope);
+        intercepError(Restangular,$rootScope);
         $rootScope.loading=true;
         var baseAccounts = Restangular.all('accounts');
             uniteFactory.getList().then(function(unites){

@@ -384,7 +384,7 @@ class IndicateurController extends  ApiController {
      *      statusCode = Codes::HTTP_BAD_REQUEST,
      *      templateVar="form"
      * )
-     * @Post("indicateurs/{typeIndicateur}")
+     * @Post("type-indicateurs/{typeIndicateur}/indicateurs")
      * @ParamConverter("typeIndicateur",class="AppBundle:TypeIndicateur")
      */
     public function postIndicateurAction(TypeIndicateur $typeIndicateur)
@@ -394,6 +394,7 @@ class IndicateurController extends  ApiController {
         if($indicateur instanceof Indicateur ===false){
             return $this->view(array('errors'=>$indicateur),Codes::HTTP_BAD_REQUEST);
         }
+        $indicateur->setTypeIndicateur($typeIndicateur);
         return $this->save($indicateur,'get_unite') ;
 
     }

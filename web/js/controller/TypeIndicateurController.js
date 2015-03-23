@@ -3,7 +3,7 @@
  */
 app.controller('TypeIndicateurController',['$scope','Restangular','$rootScope','typeIndicateurFactory',
     function($scope,Restangular,$rootScope,typeIndicateurFactory){
-        intercepErrot(Restangular,$rootScope);
+        intercepError(Restangular,$rootScope);
         $rootScope.loading=true;
         typeIndicateurFactory.getList().then(function(typeIndicateurs){
             $scope.typeIndicateurs = typeIndicateurs;
