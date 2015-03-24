@@ -22,9 +22,14 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
 
                 $scope.newIndicateur = {};
                 $scope.saveIndicateur = function(){
+                    if(!controlFields()) return;
                     if($scope.method === "PUT"){
-                        typeIndicateurFactory.one($scope.newIndicateur.typeIndicateur.id).put('indicateurs',{'id':$scope.newIndicateur.id}).then(function(value){
-                        //$scope.newIndicateur.put('indicateurs',{'id':$scope.newIndicateur.id}).then(function(values){
+                        var params ={
+                            'typeIndicateur':$scope.newIndicateur.typeIndicateur.id,
+                            'indicateur': $scope.newIndicateur.id
+                        }
+                        Restangular.customPUT(getRoute('put_indicateur'),$scope.newIndicateur.typeIndicateur.id)
+                        .then(function(value){
                             $scope.newIndicateur = {};
                             $rootScope.$broadcast('showMessage',
                                 {messages:["Modification effectuée"],
@@ -34,6 +39,7 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                         $scope.method = "POST";
                     }
                     else{
+
                        typeIndicateurFactory.one($scope.newIndicateur.typeIndicateur.id).post('indicateurs',$scope.newIndicateur).then(function(values){
                            $scope.indicateurs.push($scope.newIndicateur);
                            $scope.newIndicateur = {};
@@ -49,7 +55,6 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
 
                 $scope.editIndicateur = function(indicateur){
                     $scope.newIndicateur = indicateur;
-                    console.log($scope.newIndicateur.typeIndicateur);
                     $scope.method = "PUT"
                 };
 
@@ -63,7 +68,23 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                         var index = $scope.indicateurs.indexOf(indicateur);
                         $scope.indicateurs.splice(index,1);
                     });
+                };
+
+                $scope.annuler = function(){
+                    $scope.method = "POST";
+                    $scope.newIndicateur={};
                 }
 
+                function controlFields(){
+                    console.log($scope.newIndicateur);
+                    if(!$scope.newIndicateur.typeIndicateur){
+                        $rootScope.$broadcast('showMessage',{
+                            messages:["Veuillez renseigner tous les champs"],
+                            typeAlert:"danger"
+                        });
+                        return false;
+                    }
+                    return true;
+                }
 
 }]);

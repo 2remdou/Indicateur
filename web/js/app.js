@@ -30,15 +30,11 @@ app.config(function(RestangularProvider){
 
 });
 
-/*
-app.config(['$rootScope',function($rootScope){
-    $rootScope.showMessage = false;
-}]);
-*/
+
 
 var getRoute = function(routeName,parametres){
 
-    return Routing.generate(routeName,{},false).slice(1);
+    return Routing.generate(routeName,parametres,false).slice(1);
 }
 function intercepError(Restangular,$rootScope){
     Restangular.setErrorInterceptor(function(response, deferred, responseHandler){

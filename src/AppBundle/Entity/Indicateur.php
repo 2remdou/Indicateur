@@ -37,7 +37,7 @@ class Indicateur
      * @ORM\Column(name="libelleIndicateur", type="string", length=255, unique=true)
      * @Assert\NotBlank(message="L'indicateur doit avoir un nom", groups={"registration"})
      * @ORM\Column(name="libelleIndicateur", type="string", length=255, unique=true)
-     * @Assert\NotBlank(message="L'indicateur doit avoir un nom")
+     * @Assert\NotBlank(message="L'indicateur doit avoir un libelle",groups={"common"})
      * @Expose()
      * @SerializedName("libelleIndicateur")
      */

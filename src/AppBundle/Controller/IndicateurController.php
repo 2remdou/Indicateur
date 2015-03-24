@@ -390,7 +390,7 @@ class IndicateurController extends  ApiController {
     public function postIndicateurAction(TypeIndicateur $typeIndicateur)
     {
         $request = $this->get('request');
-        $indicateur = $this->deserialize('AppBundle\Entity\Indicateur',$request,'json',array('create','common'));
+        $indicateur = $this->deserialize('AppBundle\Entity\Indicateur',$request,'json',array('common'));
         if($indicateur instanceof Indicateur ===false){
             return $this->view(array('errors'=>$indicateur),Codes::HTTP_BAD_REQUEST);
         }
