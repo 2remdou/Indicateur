@@ -33,7 +33,7 @@ class TypeIndicateur
     /**
      * @var string
      *
-     * @ORM\Column(name="libelleTypeIndicateur", type="string", length=255, unique=true)
+     * @ORM\Column(name="libelleTypeIndicateur", type="string", length=255, unique=true,nullable=false)
      * @Expose()
      * @Assert\NotBlank(message="Fournissez le libelle type indicateur")
      * @SerializedName("libelleTypeIndicateur")
