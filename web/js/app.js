@@ -21,6 +21,10 @@ app.config(['$routeProvider',function($routeProvider){
            templateUrl : 'js/view/indicateur.html',
            controller: 'IndicateurController'
        })
+       .when('/detail-indicateurs',{
+           templateUrl : 'js/view/detailIndicateur.html',
+           controller: 'DetailIndicateurController'
+       })
        .otherwise({redirectTo:'/'});
 }]);
 
@@ -30,11 +34,6 @@ app.config(function(RestangularProvider){
 
 });
 
-/*
-app.config(['$rootScope',function($rootScope){
-    $rootScope.showMessage = false;
-}]);
-*/
 
 var getRoute = function(routeName,parametres){
 

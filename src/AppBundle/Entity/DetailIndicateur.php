@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\SerializedName;
 
 /**
  * DetailIndicateur
@@ -22,6 +23,7 @@ class DetailIndicateur
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @SerializedName("id")
      */
     private $id;
 
@@ -30,6 +32,7 @@ class DetailIndicateur
      *
      * @ORM\Column(name="dateDetail", type="datetime",nullable=false)
      * @Expose()
+     * @SerializedName("dateDetail")
      */
     private $dateDetail;
 
@@ -39,12 +42,14 @@ class DetailIndicateur
      * @ORM\Column(name="valeur",type="decimal",nullable=false)
      * @Assert\Type(type="numeric",message="la valeur doit etre un numerique")
      * @Expose()
+     * @SerializedName("valeur")
      */
     private $valeur;
     /**
      * @var
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Indicateur", inversedBy="detailIndicateurs")
      * @Expose()
+     * @SerializedName("indicateur")
      */
     private $indicateur;
 
@@ -53,6 +58,7 @@ class DetailIndicateur
      *
      * @ORM\ManyToOne(targetEntity="Unite", inversedBy="detailIndicateurs")
      * @Expose()
+     * @SerializedName("unite")
      */
     private $unite;
     /**

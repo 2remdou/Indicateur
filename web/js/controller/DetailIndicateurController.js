@@ -1,26 +1,28 @@
 /**
  * Created by delphinsagno on 15/03/15.
  */
-app.controller('IndicateurController',['$scope','Restangular','$rootScope','indicateurFactory','typeIndicateurFactory',
-    function($scope,Restangular,$rootScope,indicateurFactory,typeIndicateurFactory){
+app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope','indicateurFactory','uniteFactory','detailIndicateurFactory',
+    function($scope,Restangular,$rootScope,indicateurFactory,uniteFactory,detailIndicateurFactory){
                 intercepError(Restangular,$rootScope);
-
                 $rootScope.$broadcast('hideMessage') ;
-
                 $rootScope.loading=true;
                     indicateurFactory.getList().then(function(indicateurs){
                         $scope.indicateurs = indicateurs;
-                        if(indicateurs.length===0){
-                            $rootScope.$broadcast('showMessage',
-                                {messages:["Aucun indicateur pour le moment"],
-                                    typeAlert:"info"
-                                }) ;
-                        }
-                        $rootScope.loading=false;
                     });
+                uniteFactory.getList().then(function(unites){
+                    $scope.unites = unites;
+                });
 
-                typeIndicateurFactory.getList().then(function(typeIndicateurs){
-                    $scope.typeIndicateurs = typeIndicateurs;
+                detailIndicateurFactory.getList().then(function(details){
+                    $scope.details = details;
+                    if(details.length===0){
+                        $rootScope.$broadcast('showMessage',
+                            {messages:["Aucun detail pour le moment"],
+                                typeAlert:"info"
+                            }) ;
+                    }
+                    $rootScope.loading=false;
+
                 });
 
                 $scope.newIndicateur = {};

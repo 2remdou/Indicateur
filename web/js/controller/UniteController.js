@@ -4,6 +4,7 @@
 app.controller('UniteController',['$scope','Restangular','$rootScope','uniteFactory',
     function($scope,Restangular,$rootScope,uniteFactory){
         intercepError(Restangular,$rootScope);
+        $rootScope.$broadcast('hideMessage') ;
         $rootScope.loading=true;
         var baseAccounts = Restangular.all('accounts');
             uniteFactory.getList().then(function(unites){

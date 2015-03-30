@@ -1,0 +1,58 @@
+<form class="form-horizontal" ng-submit="saveIndicateur(method)">
+    <fieldset>
+        <legend>Liste des details</legend>
+        <div class="form-group">
+            <div class="col-lg-2">
+                <label for="indicateur" class="control-label">Indicateur</label>
+                <select class="form-control" id="indicateur" ng-model="newDetail.indicateur"
+                        ng-options="indicateur as indicateur.libelleIndicateur
+                         for indicateur in indicateurs">
+                </select>
+            </div>
+            <div class="col-lg-3">
+                <label for="dateIndicateur" class="control-label">Date</label>
+                <input type="text" class="form-control datepicker" id="dateIndicateur" ng-model="newDetail.dateDetail" placeholder="La date du detail">
+            </div>
+            <div class="col-lg-3">
+                <label for="valeur" class="control-label">La valeur</label>
+                <input type="text" class="form-control" id="valeur" ng-model="newDetail.valeur" placeholder="La valeur du detail">
+            </div>
+            <div class="col-lg-2">
+                <label for="unite" class="control-label">Unite</label>
+                <select class="form-control" id="unite" ng-model="newDetail.unite"
+                        ng-options="unite as unite.libelleUnite
+                         for unite in unites    ">
+                </select>
+            </div>
+            <div class="col-lg-2" style="padding-top: 30px;">
+                <button type="reset" class="btn btn-default">Annuler</button>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+<table class="table table-striped table-hover ">
+    <thead>
+    <tr>
+        <th>N°</th>
+        <th>Date</th>
+        <th>Indicateur</th>
+        <th>Valeur</th>
+        <th>Unite</th>
+    </tr>
+    </thead>
+    <tbody>
+    <ind-loading valeur-loading="loading">
+        <tr ng-repeat="detail in details" >
+            <td>{{$index+1}}</td>
+            <td>{{detail.dateDetail}}</td>
+            <td>{{detail.indicateur.libelleIndicateur}}</td>
+            <td>{{detail.valeur}}</td>
+            <td>{{detail.unite.libelleUnite}}</td>
+            <td><button class="btn btn-info" ng-click="editIndicateur(indicateur)">Modifier</button></td>
+            <td><button class="btn btn-info" ng-click="deleteIndicateur(indicateur)">Supprimer</button></td>
+        </tr>
+    </ind-loading>
+    </tbody>
+</table>

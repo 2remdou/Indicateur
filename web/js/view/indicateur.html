@@ -9,8 +9,8 @@
             <label for="typeIndicateur" class="col-lg-2 control-label">Type Indicateur</label>
             <div class="col-lg-2">
                 <select class="form-control" id="typeIndicateur" ng-model="newIndicateur.typeIndicateur"
-                        ng-options="typeIndicateur.libelleTypeIndicateur for typeIndicateur in typeIndicateurs">
-                    <option value="">Choisissez un type</option>
+                        ng-options="typeIndicateur as typeIndicateur.libelleTypeIndicateur
+                         for typeIndicateur in typeIndicateurs">
                 </select>
             </div>
             <div>

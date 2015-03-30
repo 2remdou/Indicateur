@@ -15,7 +15,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\IndicateurRepository")
  * @ExclusionPolicy("all")
- * @UniqueEntity("libelleIndicateur",message="Ce libelle existe deja",groups={"common"})
+ * @UniqueEntity("libelleIndicateur",message="Ce libelle existe deja",groups={"create"})
  */
 
 class Indicateur
@@ -55,7 +55,7 @@ class Indicateur
     /**
      * @var TypeIndicateur $typeIndicateur
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TypeIndicateur", inversedBy="indicateur",cascade={"persist","remove"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TypeIndicateur", inversedBy="indicateur")
      * @Expose()
      * @ORM\JoinColumn(nullable=false)
      * @SerializedName("typeIndicateur")
@@ -158,9 +158,14 @@ class Indicateur
         return $this->typeIndicateur;
     }
 
+    /**
+     * @param Indicateur $newIndicateur
+     */
     public function update(Indicateur $newIndicateur){
         $this->setLibelleIndicateur($newIndicateur->getLibelleIndicateur());
-        $this->setTypeIndicateur($newIndicateur->setTypeIndicateur());
-        $this->setTypeIndicateur($newIndicateur->getTypeIndicateur());
+        if($newIndicateur->getTypeIndicateur() !== $this->getTypeIndicateur()){
+
+            $this->setTypeIndicateur($newIndicateur->getTypeIndicateur());
+        }
     }
 }

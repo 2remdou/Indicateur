@@ -4,12 +4,15 @@
 app.controller('TypeIndicateurController',['$scope','Restangular','$rootScope','typeIndicateurFactory',
     function($scope,Restangular,$rootScope,typeIndicateurFactory){
         intercepError(Restangular,$rootScope);
+
+        $rootScope.$broadcast('hideMessage') ;
+
         $rootScope.loading=true;
         typeIndicateurFactory.getList().then(function(typeIndicateurs){
             $scope.typeIndicateurs = typeIndicateurs;
             if(typeIndicateurs.length===0){
                 $rootScope.$broadcast('showMessage',
-                    {messages:["Aucune données pour le moment"],
+                    {messages:["Aucun type indicateur pour le moment"],
                         typeAlert:"info"
                     }) ;
             }
