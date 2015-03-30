@@ -19,7 +19,7 @@ class ApiController extends FOSRestController {
     {
         return $this->getDoctrine()->getEntityManager();
     }
-    protected function deserialize($class, Request $request, $format = 'json',$groups=null)
+    protected function deserialize($class, Request $request, $format = 'json',$groups="common")
     {
         $serializer = $this->get('serializer');
         $validator = $this->get('validator');

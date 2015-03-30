@@ -62,4 +62,10 @@ app.controller('TypeIndicateurController',['$scope','Restangular','$rootScope','
                 $scope.typeIndicateurs.splice(index,1);
             });
         }
+
+        $scope.annuler = function(){
+            $scope.method = "POST";
+            $scope.newIndicateur={};
+        }
+
     }]);

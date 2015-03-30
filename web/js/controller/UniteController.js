@@ -60,4 +60,10 @@ app.controller('UniteController',['$scope','Restangular','$rootScope','uniteFact
                 $scope.unites.splice(index,1);
             });
         }
-}]);
+
+        $scope.annuler = function(){
+            $scope.method = "POST";
+            $scope.newUnite={};
+        }
+
+    }]);

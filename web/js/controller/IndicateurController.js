@@ -25,6 +25,7 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
 
                 $scope.newIndicateur = {};
                 $scope.saveIndicateur = function(){
+                    if(!controlFields()) return;
                     if($scope.method === "PUT"){
                         $scope.newIndicateur.put().then(function(values){
                             $scope.newIndicateur = {};
@@ -36,6 +37,7 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                         $scope.method = "POST";
                     }
                     else{
+
                        typeIndicateurFactory.one($scope.newIndicateur.typeIndicateur.id).post('indicateurs',$scope.newIndicateur).then(function(values){
                            $scope.indicateurs.push($scope.newIndicateur);
                            $scope.newIndicateur = {};
@@ -64,7 +66,23 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                         var index = $scope.indicateurs.indexOf(indicateur);
                         $scope.indicateurs.splice(index,1);
                     });
+                };
+
+                $scope.annuler = function(){
+                    $scope.method = "POST";
+                    $scope.newIndicateur={};
                 }
 
+                function controlFields(){
+                    console.log($scope.newIndicateur);
+                    if(!$scope.newIndicateur.typeIndicateur){
+                        $rootScope.$broadcast('showMessage',{
+                            messages:["Veuillez renseigner tous les champs"],
+                            typeAlert:"danger"
+                        });
+                        return false;
+                    }
+                    return true;
+                }
 
 }]);
