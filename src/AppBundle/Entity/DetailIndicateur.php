@@ -158,7 +158,7 @@ class DetailIndicateur
      */
     public function setDateDetail($dateDetail)
     {
-        $this->dateDetail =new $dateDetail ;
+        $this->dateDetail =new \DateTime($dateDetail);
 
         return $this;
     }

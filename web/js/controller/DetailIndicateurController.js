@@ -6,14 +6,9 @@ app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope'
                 intercepError(Restangular,$rootScope);
                 $rootScope.$broadcast('hideMessage') ;
                 $rootScope.loading=true;
-                    indicateurFactory.getList().then(function(indicateurs){
-                        $scope.indicateurs = indicateurs;
-                    });
-                uniteFactory.getList().then(function(unites){
-                    $scope.unites = unites;
-                });
 
                 detailIndicateurFactory.getList().then(function(details){
+                    console.log(details);
                     $scope.details = details;
                     if(details.length===0){
                         $rootScope.$broadcast('showMessage',
@@ -24,9 +19,20 @@ app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope'
                     $rootScope.loading=false;
 
                 });
+/*
+                indicateurFactory.getList().then(function(indicateurs){
+                    $scope.indicateurs = indicateurs;
+                });
 
-                $scope.newIndicateur = {};
-                $scope.saveIndicateur = function(){
+                uniteFactory.getList().then(function(unites){
+                    $scope.unites = unites;
+                });
+*/
+
+
+
+                $scope.newDetail = {};
+                $scope.saveDetail = function(){
                     if($scope.method === "PUT"){
                         $scope.newIndicateur.put().then(function(values){
                             $scope.newIndicateur = {};
@@ -38,9 +44,11 @@ app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope'
                         $scope.method = "POST";
                     }
                     else{
-                       typeIndicateurFactory.one($scope.newIndicateur.typeIndicateur.id).post('indicateurs',$scope.newIndicateur).then(function(values){
-                           $scope.indicateurs.push($scope.newIndicateur);
-                           $scope.newIndicateur = {};
+                        console.log($scope.newDetail);
+                       uniteFactory.one($scope.newDetail.unite.id).one(getRoute('get_indicateurs'),$scope.newDetail.indicateur.id).post('details',$scope.newDetail)
+                           .then(function(values){
+                           $scope.details.push($scope.newDetail);
+                           $scope.newDetail = {};
                            $rootScope.$broadcast('showMessage',{
                                messages:["Enregistrement effectué"],
                                typeAlert:"success"

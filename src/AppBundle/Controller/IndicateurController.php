@@ -451,7 +451,7 @@ class IndicateurController extends  ApiController {
      *          200="Operation reussie",
      *  }
      * )
-     * @Get("details/{$id}")
+     * @Get("details/{id}")
      * @View()
      */
     public function getDetailIndicateurAction($id)
@@ -467,13 +467,14 @@ class IndicateurController extends  ApiController {
      *          200="Operation reussie",
      *  }
      * )
+     * @ParamConverter("indicateur",class="AppBundle:Indicateur")
      * @Get("details")
      */
-    public function getDetailIndicateursAction()
+    public function getDetailIndicateursAction(Indicateur $indicateur)
     {
         $em = $this->getEntityManager();
-        $details = $em->getRepository("AppBundle:DetailIndicateur")->findAll();
-        $this->view($details,200);
+//        $details = $em->getRepository("AppBundle:DetailIndicateur")->findByIndicateur($indicateur->getId())
+        $this->view($indicateur);
     }
     /**
      * @ApiDoc(
@@ -484,7 +485,7 @@ class IndicateurController extends  ApiController {
      *      }
      *
      * )
-     * @Post("details/{unite}/{indicateur}")
+     * @Post("unites/{unite}/indicateurs/{indicateur}/details")
      * @ParamConverter("unite",class="AppBundle:Unite")
      * @ParamConverter("indicateur",class="AppBundle:Indicateur")
      * @View()
@@ -521,32 +522,6 @@ class IndicateurController extends  ApiController {
      * @View()
      */
     public function putDetailIndicateurAction(Unite $unite,Indicateur $indicateur,DetailIndicateur $detailIndicateur)
-    {
-        if($detailIndicateur->getIndicateur() !== $indicateur)
-            $detailIndicateur->setIndicateur($indicateur);
-        if($detailIndicateur->getUnite() !== $unite)
-            $detailIndicateur->setUnite($unite);
-        return $this->processForm($detailIndicateur,new DetailIndicateurType(),'get_detail_indicateur');
-    }
-    /**
-     * @param Unite $unite
-     * @param Indicateur $indicateur
-     * @param DetailIndicateur $detailIndicateur
-     * @return array|\FOS\RestBundle\View\View
-     * @ApiDoc(
-     *           description="Modifier un indicateur",
-     *           statusCodes={
-     *               200="Modification reussie",
-     *               400="Donnees invalide"
-     *           }
-     *   )
-     * @Patch("details/{unite}/{indicateur}/{detailIndicateur}")
-     * @ParamConverter("unite",class="AppBundle:Unite")
-     * @ParamConverter("indicateur",class="AppBundle:Indicateur")
-     * @ParamConverter("detailIndicateur",class="AppBundle:DetailIndicateur")
-     * @View()
-     */
-    public function patchDetailIndicateurAction(Unite $unite,Indicateur $indicateur,DetailIndicateur $detailIndicateur)
     {
         if($detailIndicateur->getIndicateur() !== $indicateur)
             $detailIndicateur->setIndicateur($indicateur);

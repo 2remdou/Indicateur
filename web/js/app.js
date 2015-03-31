@@ -34,7 +34,6 @@ app.config(function(RestangularProvider){
 
 });
 
-
 var getRoute = function(routeName,parametres){
 
     return Routing.generate(routeName,parametres,false).slice(1);
