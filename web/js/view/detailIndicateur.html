@@ -6,7 +6,7 @@
                 <label for="indicateur" class="control-label">Indicateur</label>
                 <select class="form-control" id="indicateur" ng-model="newDetail.indicateur"
                         ng-options="indicateur as indicateur.libelleIndicateur
-                         for indicateur in indicateurs">
+                         for indicateur in indicateurs" ng-change="changeIndicateur()">
                 </select>
             </div>
             <div class="col-lg-3">
@@ -46,9 +46,9 @@
     <ind-loading valeur-loading="loading">
         <tr ng-repeat="detail in details" >
             <td>{{$index+1}}</td>
-            <td>{{detail.dateDetail}}</td>
+            <td>{{detail.dateDetail|date:'dd-MM-yyyy HH:mm:ss'}}</td>
             <td>{{detail.indicateur.libelleIndicateur}}</td>
-            <td>{{detail.valeur}}</td>
+            <td>{{detail.valeur|number| separatorNumber}}</td>
             <td>{{detail.unite.libelleUnite}}</td>
             <td><button class="btn btn-info" ng-click="editIndicateur(indicateur)">Modifier</button></td>
             <td><button class="btn btn-info" ng-click="deleteIndicateur(indicateur)">Supprimer</button></td>

@@ -33,6 +33,7 @@ class DetailIndicateur
      * @ORM\Column(name="dateDetail", type="datetime",nullable=false)
      * @Expose()
      * @SerializedName("dateDetail")
+     * @Assert\NotBlank(message="Veuillez fournir une date")
      */
     private $dateDetail;
 
@@ -43,6 +44,7 @@ class DetailIndicateur
      * @Assert\Type(type="numeric",message="la valeur doit etre un numerique")
      * @Expose()
      * @SerializedName("valeur")
+     * @Assert\NotBlank(message="Veuillez fournir une valeur")
      */
     private $valeur;
     /**

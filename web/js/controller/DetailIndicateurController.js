@@ -8,7 +8,6 @@ app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope'
                 $rootScope.loading=true;
 
                 detailIndicateurFactory.getList().then(function(details){
-                    console.log(details);
                     $scope.details = details;
                     if(details.length===0){
                         $rootScope.$broadcast('showMessage',
@@ -19,7 +18,6 @@ app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope'
                     $rootScope.loading=false;
 
                 });
-/*
                 indicateurFactory.getList().then(function(indicateurs){
                     $scope.indicateurs = indicateurs;
                 });
@@ -27,12 +25,12 @@ app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope'
                 uniteFactory.getList().then(function(unites){
                     $scope.unites = unites;
                 });
-*/
 
 
 
                 $scope.newDetail = {};
                 $scope.saveDetail = function(){
+                    if(!controlFields()) return;
                     if($scope.method === "PUT"){
                         $scope.newIndicateur.put().then(function(values){
                             $scope.newIndicateur = {};
@@ -44,7 +42,6 @@ app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope'
                         $scope.method = "POST";
                     }
                     else{
-                        console.log($scope.newDetail);
                        uniteFactory.one($scope.newDetail.unite.id).one(getRoute('get_indicateurs'),$scope.newDetail.indicateur.id).post('details',$scope.newDetail)
                            .then(function(values){
                            $scope.details.push($scope.newDetail);
@@ -76,5 +73,43 @@ app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope'
                     });
                 }
 
+                $scope.changeIndicateur = function(){
+                    alert($scope.newDetail.indicateur.libelleIndicateur);
+                }
+                function controlFields(){
+                    if(!$scope.newDetail.indicateur){
+                        $rootScope.$broadcast('showMessage',{
+                            messages:["Veuillez selectionner un indicateur"],
+                            typeAlert:"danger"
+                        });
+                        return false;
+                    }
+                    if(!$scope.newDetail.unite){
+                        $rootScope.$broadcast('showMessage',{
+                            messages:["Veuillez selectionner une unite"],
+                            typeAlert:"danger"
+                        });
+                        return false;
+                    }
+                    if(!$scope.newDetail.valeur){
+                        $rootScope.$broadcast('showMessage',{
+                            messages:["Veuillez fournir une valeur"],
+                            typeAlert:"danger"
+                        });
+                        return false;
+                    }
 
-}]);
+                    if(!$scope.newDetail.dateDetail){
+                        $rootScope.$broadcast('showMessage',{
+                            messages:["Veuillez fournir une date"],
+                            typeAlert:"danger"
+                        });
+                        return false;
+                    }
+
+                    return true;
+                }
+
+
+
+    }]);

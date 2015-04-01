@@ -467,14 +467,13 @@ class IndicateurController extends  ApiController {
      *          200="Operation reussie",
      *  }
      * )
-     * @ParamConverter("indicateur",class="AppBundle:Indicateur")
      * @Get("details")
      */
-    public function getDetailIndicateursAction(Indicateur $indicateur)
+    public function getDetailIndicateursAction()
     {
         $em = $this->getEntityManager();
-//        $details = $em->getRepository("AppBundle:DetailIndicateur")->findByIndicateur($indicateur->getId())
-        $this->view($indicateur);
+        $details = $em->getRepository("AppBundle:DetailIndicateur")->findAll();
+        return $this->view($details);
     }
     /**
      * @ApiDoc(
