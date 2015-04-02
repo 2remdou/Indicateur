@@ -125,7 +125,12 @@ class DetailIndicateur
     {
         $this->setDate($newDetail->getDate());
         $this->setValeur($newDetail->getValeur());
-        $this->setIndicateur($newDetail->getIndicateur());
+        if($newDetail->getIndicateur() !== $this->getIndicateur()){
+            $this->setIndicateur($newDetail->getIndicateur());
+        }
+        if($newDetail->getUnite() !== $this->getUnite()){
+            $this->setUnite($newDetail->getUnite());
+        }
         $this->setUnite($newDetail->getUnite());
     }
 
@@ -174,4 +179,5 @@ class DetailIndicateur
     {
         return $this->dateDetail;
     }
+
 }

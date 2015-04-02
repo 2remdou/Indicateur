@@ -475,6 +475,61 @@ class IndicateurController extends  ApiController {
         $details = $em->getRepository("AppBundle:DetailIndicateur")->findAll();
         return $this->view($details);
     }
+
+    /**
+     *  @ApiDoc(
+     *      description="Tous les details d'un  indicateur",
+     *      statusCodes={
+     *          200="Operation reussie",
+     *  }
+     * )
+     * @ParamConverter("indicateur",class="AppBundle:Indicateur")
+     * @Get("indicateurs/{indicateur}/details")
+     */
+    public function getDetailByIndicateursAction(Indicateur $indicateur)
+    {
+        $em = $this->getEntityManager();
+        $details = $em->getRepository("AppBundle:DetailIndicateur")->findByIndicateur($indicateur->getId());
+        return $this->view($details);
+    }
+
+    /**
+     *  @ApiDoc(
+     *      description="Tous les details d'une  unite",
+     *      statusCodes={
+     *          200="Operation reussie",
+     *  }
+     * )
+     * @ParamConverter("unite",class="AppBundle:Unite")
+     * @Get("unites/{unite}/details")
+     */
+    public function getDetailByUnitesAction(Unite $unite)
+    {
+        $em = $this->getEntityManager();
+        $details = $em->getRepository("AppBundle:DetailIndicateur")->findByUnite($unite->getId());
+        return $this->view($details);
+    }
+
+    /**
+     *  @ApiDoc(
+     *      description="Tous les details correspondant à une unite et à un indicateur",
+     *      statusCodes={
+     *          200="Operation reussie",
+     *  }
+     * )
+     * @ParamConverter("unite",class="AppBundle:Unite")
+     * @ParamConverter("indicateur",class="AppBundle:Indicateur")
+     * @Get("unites/{unite}/indicateurs/{indicateur}/details")
+     */
+    public function getDetailByUniteAndByIndicateurAction(Unite $unite,Indicateur $indicateur)
+    {
+        $em = $this->getEntityManager();
+        $details = $em->getRepository("AppBundle:DetailIndicateur")->findByUniteAndIndicateur($unite->getId(),$indicateur->getId());
+        return $this->view($details);
+    }
+
+
+
     /**
      * @ApiDoc(
      *      description= "Cree un detail d'un indicateur",
@@ -508,25 +563,28 @@ class IndicateurController extends  ApiController {
      * @param DetailIndicateur $detailIndicateur
      * @return array|\FOS\RestBundle\View\View
      * @ApiDoc(
-     *           description="Modifier un indicateur",
+     *           description="Modifier un detail",
      *           statusCodes={
      *               200="Modification reussie",
      *               400="Donnees invalide"
      *           }
      *   )
-     * @Put("details/{unite}/{indicateur}/{detailIndicateur}")
-     * @ParamConverter("unite",class="AppBundle:Unite")
-     * @ParamConverter("indicateur",class="AppBundle:Indicateur")
-     * @ParamConverter("detailIndicateur",class="AppBundle:DetailIndicateur")
+     * @Put("details/{detailIndicateur}")
+     * @ParamConverter("detail",class="AppBundle:DetailIndicateur")
      * @View()
      */
-    public function putDetailIndicateurAction(Unite $unite,Indicateur $indicateur,DetailIndicateur $detailIndicateur)
+    public function putDetailIndicateurAction(DetailIndicateur $detail)
     {
-        if($detailIndicateur->getIndicateur() !== $indicateur)
-            $detailIndicateur->setIndicateur($indicateur);
-        if($detailIndicateur->getUnite() !== $unite)
-            $detailIndicateur->setUnite($unite);
-        return $this->processForm($detailIndicateur,new DetailIndicateurType(),'get_detail_indicateur');
+        $request = $this->get('request');
+        $newDetail = $this->deserialize('AppBundle\Entity\DetailIndicateur',$request,'json',array('common'));
+        if($newDetail instanceof DetailIndicateur ===false){
+            return $this->view(array('errors'=>$newDetail),Codes::HTTP_BAD_REQUEST);
+        }
+        $em = $this->getEntityManager();
+        $newDetail->setUnite($em->getRepository("AppBundle:Unite")->find($newDetail->getUnite()->getId()));
+        $newDetail->setIndicateur($em->getRepository("AppBundle:Indicateur")->find($newDetail->getIndicateur()->getId()));
+        $detail->update($newDetail);
+        return $this->save($detail,'get_indicateur');
     }
     /**
      * @param DetailIndicateur $detailIndicateur

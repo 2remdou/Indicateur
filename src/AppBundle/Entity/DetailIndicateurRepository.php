@@ -17,7 +17,30 @@ class DetailIndicateurRepository extends EntityRepository
             ->leftJoin('d.indicateur','indicateur')
             ->where('d.indicateur=:id')
             ->setParameter('id',$id)
-            ->orderBy('d.date','DESC');
-        return $qb->getQuery()->getArrayResult();
+            ->orderBy('d.dateDetail','DESC');
+        return $qb->getQuery()->getResult();
     }
+
+    public function findByUnite($id){
+        $qb = $this->createQueryBuilder('d')
+            ->leftJoin('d.unite','unite')
+            ->where('d.unite=:id')
+            ->setParameter('id',$id)
+            ->orderBy('d.dateDetail','DESC');
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findByUniteAndIndicateur($uniteId,$indicateurId){
+        $qb = $this->createQueryBuilder('d')
+            ->leftJoin('d.indicateur','indicateur')
+            ->leftJoin('d.unite','unite')
+            ->where('d.indicateur=:indicateurId')
+            ->andWhere('d.unite=:uniteId')
+            ->setParameter('indicateurId',$indicateurId)
+            ->setParameter('uniteId',$uniteId)
+            ->orderBy('d.dateDetail','DESC');
+        return $qb->getQuery()->getResult();
+
+    }
+
 }

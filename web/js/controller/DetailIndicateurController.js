@@ -1,23 +1,27 @@
 /**
  * Created by delphinsagno on 15/03/15.
  */
-app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope','indicateurFactory','uniteFactory','detailIndicateurFactory',
-    function($scope,Restangular,$rootScope,indicateurFactory,uniteFactory,detailIndicateurFactory){
+app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope','indicateurFactory','uniteFactory','detailIndicateurFactory','dateFilter',
+    function($scope,Restangular,$rootScope,indicateurFactory,uniteFactory,detailIndicateurFactory,dateFilter){
                 intercepError(Restangular,$rootScope);
                 $rootScope.$broadcast('hideMessage') ;
-                $rootScope.loading=true;
+                $scope.all = function(){
+                    $rootScope.loading=true;
+                    detailIndicateurFactory.getList().then(function(details){
+                        $scope.details = details;
+                        if(details.length===0){
+                            $rootScope.$broadcast('showMessage',
+                                {messages:["Aucun detail pour le moment"],
+                                    typeAlert:"info"
+                                }) ;
+                        }
+                        $rootScope.loading=false;
 
-                detailIndicateurFactory.getList().then(function(details){
-                    $scope.details = details;
-                    if(details.length===0){
-                        $rootScope.$broadcast('showMessage',
-                            {messages:["Aucun detail pour le moment"],
-                                typeAlert:"info"
-                            }) ;
-                    }
-                    $rootScope.loading=false;
+                    });
+                }
 
-                });
+                $scope.all();
+
                 indicateurFactory.getList().then(function(indicateurs){
                     $scope.indicateurs = indicateurs;
                 });
@@ -56,12 +60,13 @@ app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope'
 
                 };
 
-                $scope.editIndicateur = function(indicateur){
-                    $scope.newIndicateur = indicateur;
+                $scope.editDetail = function(detail){
+                    detail.dateDetail = dateFilter(detail.dateDetail,'yyyy-d-M h:mm:ss');
+                    $scope.newDetail = detail;
                     $scope.method = "PUT"
                 };
 
-                $scope.deleteIndicateur = function(indicateur){
+                $scope.deleteDetail = function(indicateur){
                     $scope.indicateur=indicateur;
                     indicateur.remove().then(function(u){
                         $rootScope.$broadcast('showMessage',{
@@ -74,8 +79,64 @@ app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope'
                 }
 
                 $scope.changeIndicateur = function(){
-                    alert($scope.newDetail.indicateur.libelleIndicateur);
-                }
+                    $rootScope.loading=true;
+                    $scope.newDetail.indicateur.getList(getRoute('get_detail_indicateurs'))
+                        .then(function(details){
+                        $scope.details = details;
+                        if(details.length===0){
+                            $rootScope.$broadcast('showMessage',
+                                {messages:["Aucun detail pour cet indicateur"],
+                                    typeAlert:"info"
+                                }) ;
+                        }
+                        $rootScope.loading=false;
+                    });
+
+                };
+
+                $scope.changeUnite = function(){
+                    $rootScope.loading=true;
+                    $scope.newDetail.unite.getList(getRoute('get_detail_indicateurs'))
+                        .then(function(details){
+                            $scope.details = details;
+                            if(details.length===0){
+                                $rootScope.$broadcast('showMessage',
+                                    {messages:["Aucun detail pour cette unite"],
+                                        typeAlert:"info"
+                                    }) ;
+                            }
+                            $rootScope.loading=false;
+                        });
+
+                };
+
+                $scope.filtre = function(){
+                    $rootScope.$broadcast('hideMessage')
+                  if($scope.newDetail.indicateur && !$scope.newDetail.unite){
+                        $scope.changeIndicateur();
+                  }
+                  else if($scope.newDetail.unite && !$scope.newDetail.indicateur){
+                      $scope.changeUnite();
+                  }
+                  else if($scope.newDetail.unite && $scope.newDetail.indicateur){
+                      uniteFactory.one($scope.newDetail.unite.id).one(getRoute('get_indicateurs'),$scope.newDetail.indicateur.id).getList(getRoute('get_detail_indicateurs'))
+                          .then(function(details){
+                              $scope.details = details;
+                              if(details.length===0){
+                                  $rootScope.$broadcast('showMessage',
+                                      {messages:["Aucun detail correspondant à ces critères"],
+                                          typeAlert:"info"
+                                      }) ;
+                              }
+                              $rootScope.loading=false;
+
+                          });
+
+                  }
+                    else{
+                      $scope.all();
+                  }
+                };
                 function controlFields(){
                     if(!$scope.newDetail.indicateur){
                         $rootScope.$broadcast('showMessage',{

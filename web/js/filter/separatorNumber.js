@@ -3,6 +3,7 @@
  */
 app.filter('separatorNumber',function(){
     return function(input){
-        return input.replace(/,/g,' ');
+        if(input)
+         return input.replace(/,/g,' ');
     }
 });
