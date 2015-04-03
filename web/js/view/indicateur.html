@@ -25,6 +25,7 @@
     <thead>
     <tr>
         <th>N°</th>
+        <th>Id</th>
         <th>Libelle Indicateur</th>
         <th>Type Indicateur</th>
     </tr>
@@ -33,6 +34,7 @@
     <ind-loading valeur-loading="loading">
         <tr ng-repeat="indicateur in indicateurs" >
             <td>{{$index+1}}</td>
+            <td>{{indicateur.id}}</td>
             <td>{{indicateur.libelleIndicateur}}</td>
             <td>{{indicateur.typeIndicateur.libelleTypeIndicateur}}</td>
             <td><button class="btn btn-info" ng-click="editIndicateur(indicateur)">Modifier</button></td>

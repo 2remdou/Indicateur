@@ -22,6 +22,7 @@
     <thead>
     <tr>
         <th>N°</th>
+        <th>Id</th>
         <th>Libelle Unite</th>
         <th>Code unite</th>
     </tr>
@@ -30,6 +31,7 @@
     <ind-loading valeur-loading="loading">
         <tr ng-repeat="unite in unites" >
             <td>{{$index+1}}</td>
+            <td>{{unite.id}}</td>
             <td>{{unite.libelleUnite}}</td>
             <td>{{unite.codeUnite}}</td>
             <td><button class="btn btn-info" ng-click="editUnite(unite)">Modifier</button></td>

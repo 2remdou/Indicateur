@@ -38,6 +38,7 @@
     <thead>
     <tr>
         <th>N°</th>
+        <th>Id</th>
         <th>Date</th>
         <th>Indicateur</th>
         <th>Valeur</th>
@@ -48,12 +49,15 @@
     <ind-loading valeur-loading="loading">
         <tr ng-repeat="detail in details" >
             <td>{{$index+1}}</td>
+            <td>{{detail.id}}</td>
             <td>{{detail.dateDetail|date:'dd-MM-yyyy HH:mm:ss'}}</td>
             <td>{{detail.indicateur.libelleIndicateur}}</td>
             <td>{{detail.valeur|number| separatorNumber}}</td>
             <td>{{detail.unite.libelleUnite}}</td>
+<!--
             <td><button class="btn btn-info" ng-click="editDetail(detail)">Modifier</button></td>
             <td><button class="btn btn-info" ng-click="deleteDetail(detail)">Supprimer</button></td>
+-->
         </tr>
     </ind-loading>
     </tbody>
