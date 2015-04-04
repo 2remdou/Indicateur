@@ -13,6 +13,10 @@ app.config(['$routeProvider',function($routeProvider){
            templateUrl: 'js/view/unite.html',
            controller: 'UniteController'
        })
+       .when('/hotes',{
+           templateUrl: 'js/view/hote.html',
+           controller: 'HoteController'
+       })
        .when('/type-indicateurs',{
            templateUrl : 'js/view/typeIndicateur.html',
            controller: 'TypeIndicateurController'

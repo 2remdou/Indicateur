@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\SerializedName;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Indicateur
@@ -13,6 +15,7 @@ use JMS\Serializer\Annotation\Expose;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\IndicateurRepository")
  * @ExclusionPolicy("all")
+ * @UniqueEntity("libelleIndicateur",message="Ce libelle existe deja",groups={"create"})
  */
 
 class Indicateur
@@ -24,22 +27,28 @@ class Indicateur
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @Expose()
+     * @SerializedName("id")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="libelleIndicateur", type="string", length=255)
-     * @Assert\NotBlank(message="L'indicateur doit avoir un nom")
+     * @ORM\Column(name="libelleIndicateur", type="string", length=255, unique=true)
+     * @Assert\NotBlank(message="L'indicateur doit avoir un nom", groups={"registration"})
+     * @ORM\Column(name="libelleIndicateur", type="string", length=255, unique=true)
+     * @Assert\NotBlank(message="L'indicateur doit avoir un libelle",groups={"common"})
      * @Expose()
+     * @SerializedName("libelleIndicateur")
      */
+
     private $libelleIndicateur;
 
     /**
      * @var Doctrine\Common\Collections\Collection $detailIndicateurs
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\DetailIndicateur", mappedBy="indicateur")
+     *
      */
     private $detailIndicateurs;
 
@@ -47,8 +56,18 @@ class Indicateur
      * @var TypeIndicateur $typeIndicateur
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TypeIndicateur", inversedBy="indicateur")
+     * @Expose()
+     * @ORM\JoinColumn(nullable=false)
+     * @SerializedName("typeIndicateur")
      */
     private  $typeIndicateur;
+
+    /**
+     * @var
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Hote", cascade={"persist"})
+     */
+    private $hotes;
+
     /**
      * Get id
      *
@@ -67,6 +86,7 @@ class Indicateur
      */
     public function setLibelleIndicateur($libelleIndicateur)
     {
+
         $this->libelleIndicateur = $libelleIndicateur;
 
         return $this;
@@ -120,5 +140,39 @@ class Indicateur
     public function getDetailIndicateurs()
     {
         return $this->detailIndicateurs;
+    }
+
+    /**
+     * Set typeIndicateur
+     *
+     * @param \AppBundle\Entity\TypeIndicateur $typeIndicateur
+     * @return Indicateur
+     */
+    public function setTypeIndicateur(\AppBundle\Entity\TypeIndicateur $typeIndicateur = null)
+    {
+        $this->typeIndicateur = $typeIndicateur;
+
+        return $this;
+    }
+
+    /**
+     * Get typeIndicateur
+     *
+     * @return \AppBundle\Entity\TypeIndicateur 
+     */
+    public function getTypeIndicateur()
+    {
+        return $this->typeIndicateur;
+    }
+
+    /**
+     * @param Indicateur $newIndicateur
+     */
+    public function update(Indicateur $newIndicateur){
+        $this->setLibelleIndicateur($newIndicateur->getLibelleIndicateur());
+        if($newIndicateur->getTypeIndicateur() !== $this->getTypeIndicateur()){
+
+            $this->setTypeIndicateur($newIndicateur->getTypeIndicateur());
+        }
     }
 }

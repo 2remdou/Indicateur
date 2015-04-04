@@ -1,12 +1,12 @@
 /**
  * Created by delphinsagno on 15/03/15.
  */
-app.controller('IndicateurController',['$scope','Restangular','$rootScope','indicateurFactory','typeIndicateurFactory',
-    function($scope,Restangular,$rootScope,indicateurFactory,typeIndicateurFactory){
+app.controller('IndicateurController',['$scope','Restangular','$rootScope','indicateurFactory','typeIndicateurFactory','hoteFactory',
+    function($scope,Restangular,$rootScope,indicateurFactory,typeIndicateurFactory,hoteFactory){
                 intercepError(Restangular,$rootScope);
 
                 $rootScope.$broadcast('hideMessage') ;
-
+                $scope.all = function(){
                 $rootScope.loading=true;
                     indicateurFactory.getList().then(function(indicateurs){
                         $scope.indicateurs = indicateurs;
@@ -18,9 +18,16 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                         }
                         $rootScope.loading=false;
                     });
+                };
+
+                $scope.all();
 
                 typeIndicateurFactory.getList().then(function(typeIndicateurs){
                     $scope.typeIndicateurs = typeIndicateurs;
+                });
+
+                hoteFactory.getList().then(function(hote){
+                    $scope.hotes = hote;
                 });
 
                 $scope.newIndicateur = {};
@@ -28,7 +35,6 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                     if(!controlFields()) return;
                     if($scope.method === "PUT"){
                         $scope.newIndicateur.put().then(function(values){
-                            $scope.newIndicateur = {};
                             $rootScope.$broadcast('showMessage',
                                 {messages:["Modification effectuée"],
                                     typeAlert:"success"
@@ -38,7 +44,9 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                     }
                     else{
 
-                       typeIndicateurFactory.one($scope.newIndicateur.typeIndicateur.id).post('indicateurs',$scope.newIndicateur).then(function(values){
+                       typeIndicateurFactory.one($scope.newIndicateur.typeIndicateur.id).one(getRoute('get_hotes'),$scope.newIndicateur.hote.id).post('indicateurs',$scope.newIndicateur)
+                           .then(function(values){
+                           $scope.all();
                            $scope.indicateurs.push($scope.newIndicateur);
                            $scope.newIndicateur = {};
                            $rootScope.$broadcast('showMessage',{
@@ -74,10 +82,16 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                 }
 
                 function controlFields(){
-                    console.log($scope.newIndicateur);
                     if(!$scope.newIndicateur.typeIndicateur){
                         $rootScope.$broadcast('showMessage',{
-                            messages:["Veuillez renseigner tous les champs"],
+                            messages:["Veuillez selectionner un type indicateur"],
+                            typeAlert:"danger"
+                        });
+                        return false;
+                    }
+                    if(!$scope.newIndicateur.hote){
+                        $rootScope.$broadcast('showMessage',{
+                            messages:["Veuillez selectionner un hote"],
                             typeAlert:"danger"
                         });
                         return false;

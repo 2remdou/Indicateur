@@ -8,6 +8,7 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\SerializedName;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Indicateur
@@ -15,7 +16,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\IndicateurRepository")
  * @ExclusionPolicy("all")
- * @UniqueEntity("libelleIndicateur",message="Ce libelle existe deja",groups={"create"})
+ * @UniqueEntity(fields={"libelleIndicateur","hotes"},message="Ce libelle indicateur existe deja pour cet hote",groups={"create"})
  */
 
 class Indicateur
@@ -34,9 +35,9 @@ class Indicateur
     /**
      * @var string
      *
-     * @ORM\Column(name="libelleIndicateur", type="string", length=255, unique=true)
+     * @ORM\Column(name="libelleIndicateur", type="string", length=255)
      * @Assert\NotBlank(message="L'indicateur doit avoir un nom", groups={"registration"})
-     * @ORM\Column(name="libelleIndicateur", type="string", length=255, unique=true)
+     * @ORM\Column(name="libelleIndicateur", type="string", length=255)
      * @Assert\NotBlank(message="L'indicateur doit avoir un libelle",groups={"common"})
      * @Expose()
      * @SerializedName("libelleIndicateur")
@@ -61,6 +62,15 @@ class Indicateur
      * @SerializedName("typeIndicateur")
      */
     private  $typeIndicateur;
+
+    /**
+     * @var
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Hote", cascade={"persist"})
+     * @Expose()
+     * @SerializedName("hotes")
+     */
+    private $hotes;
+
     /**
      * Get id
      *
@@ -99,7 +109,7 @@ class Indicateur
      */
     public function __construct()
     {
-        $this->detailIndicateurs = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->detailIndicateurs = new ArrayCollection();
     }
 
     /**
@@ -164,8 +174,53 @@ class Indicateur
     public function update(Indicateur $newIndicateur){
         $this->setLibelleIndicateur($newIndicateur->getLibelleIndicateur());
         if($newIndicateur->getTypeIndicateur() !== $this->getTypeIndicateur()){
-
             $this->setTypeIndicateur($newIndicateur->getTypeIndicateur());
         }
+       foreach($this->getHotes() as $hote){
+            if(!$newIndicateur->getHotes()->contains($hote)){
+                $this->getHotes()->remove($hote);
+            }
+        }
+        foreach($newIndicateur->getHotes() as $hote){
+            if(!$this->getHotes()->contains($hote)){
+                $this->getHotes()->add($hote);
+            }
+        }
+
+
+
+    }
+
+    /**
+     * Add hotes
+     *
+     * @param \AppBundle\Entity\Hote $hotes
+     * @return Indicateur
+     */
+    public function addHote(\AppBundle\Entity\Hote $hotes)
+    {
+        $this->hotes[] = $hotes;
+
+        return $this;
+    }
+
+    /**
+     * Remove hotes
+     *
+     * @param \AppBundle\Entity\Hote $hotes
+     */
+    public function removeHote(\AppBundle\Entity\Hote $hotes)
+    {
+        $this->hotes->removeElement($hotes);
+    }
+
+    /**
+     * Get hotes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getHotes()
+    {
+        return $this->hotes;
     }
 }

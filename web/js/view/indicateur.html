@@ -1,19 +1,26 @@
-<form class="form-horizontal" ng-submit="saveIndicateur(method)">
+<form class="form-horizontal" ng-submit="saveIndicateur(method)" style="padding-left: 50px;">
     <fieldset>
         <legend>Liste des indicateurs</legend>
         <div class="form-group">
-            <label for="libelleIndicateur" class="col-lg-2 control-label">Libelle de l'unite</label>
             <div class="col-lg-3">
+                <label for="libelleIndicateur" class="control-label">Libelle de l'unite</label>
                 <input type="text" class="form-control" id="libelleIndicateur" ng-model="newIndicateur.libelleIndicateur" placeholder="Le libelle (Ex:Espace dbdev ...)">
             </div>
-            <label for="typeIndicateur" class="col-lg-2 control-label">Type Indicateur</label>
             <div class="col-lg-2">
+                <label for="typeIndicateur" class="control-label">Type Indicateur</label>
                 <select class="form-control" id="typeIndicateur" ng-model="newIndicateur.typeIndicateur"
                         ng-options="typeIndicateur as typeIndicateur.libelleTypeIndicateur
                          for typeIndicateur in typeIndicateurs">
                 </select>
             </div>
-            <div>
+            <div class="col-lg-2">
+                <label for="hote" class="control-label">Hote</label>
+                <select class="form-control" id="hote" ng-model="newIndicateur.hote"
+                        ng-options="hote as hote.libelleHote
+                         for hote in hotes">
+                </select>
+            </div>
+            <div style="padding-top: 30px;">
                 <button type="reset" ng-click="annuler()" class="btn btn-default">Annuler</button>
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
             </div>
@@ -28,6 +35,7 @@
         <th>Id</th>
         <th>Libelle Indicateur</th>
         <th>Type Indicateur</th>
+        <th>Hote</th>
     </tr>
     </thead>
     <tbody>
@@ -37,6 +45,8 @@
             <td>{{indicateur.id}}</td>
             <td>{{indicateur.libelleIndicateur}}</td>
             <td>{{indicateur.typeIndicateur.libelleTypeIndicateur}}</td>
+            <td ng-repeat="hote in indicateur.hotes">{{hote.libelleHote}}</td>
+
             <td><button class="btn btn-info" ng-click="editIndicateur(indicateur)">Modifier</button></td>
             <td><button class="btn btn-info" ng-click="deleteIndicateur(indicateur)">Supprimer</button></td>
         </tr>

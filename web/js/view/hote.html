@@ -1,0 +1,42 @@
+<form class="form-horizontal" ng-submit="saveHote(method)" style="padding-left: 30px;">
+    <fieldset>
+        <legend>Les differents des hotes</legend>
+        <div class="form-group">
+            <div class="col-lg-4">
+            <label for="adresseHote" class="control-label">Adresse ip de l'hote</label>
+                <input type="text" class="form-control" id="adresseHote" ng-model="newHote.adresseHote" placeholder="L'Adresse ip (Ex:10.10.0.16)">
+            </div>
+            <div class="col-lg-4">
+            <label for="libelleHote" class="control-label">Libelle de l'hote</label>
+                <input type="text" class="form-control" id="libelleHote" ng-model="newHote.libelleHote" placeholder="Le libelle (Ex:Srv dev)">
+            </div>
+            <div class="col-lg-3" style="padding-top: 30px;">
+                <button type="reset"  ng-click="annuler()" class="btn btn-default">Annuler</button>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+<table class="table table-striped table-hover ">
+    <thead>
+    <tr>
+        <th>N°</th>
+        <th>Id</th>
+        <th>Adresse IP</th>
+        <th>Libelle hote</th>
+    </tr>
+    </thead>
+    <tbody>
+    <ind-loading valeur-loading="loading">
+        <tr ng-repeat="hote in hotes" >
+            <td>{{$index+1}}</td>
+            <td>{{hote.id}}</td>
+            <td>{{hote.adresseHote}}</td>
+            <td>{{hote.libelleHote}}</td>
+            <td><button class="btn btn-info" ng-click="editHote(hote)">Modifier</button></td>
+            <td><button class="btn btn-info" ng-click="deleteHote(hote)">Supprimer</button></td>
+        </tr>
+    </ind-loading>
+    </tbody>
+</table>

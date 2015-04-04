@@ -6,6 +6,7 @@
  * Time: 08:04
  */
 namespace AppBundle\Controller;
+use AppBundle\Entity\Hote;
 use AppBundle\Entity\Indicateur;
 use AppBundle\Entity\Unite;
 use AppBundle\Form\DetailIndicateurType;
@@ -210,6 +211,105 @@ class IndicateurController extends  ApiController {
         $em->flush();
     }
     /**
+     * @param $id
+     * @return array
+     * @ApiDoc(
+     *      description="Detail d'un hote",
+     *      statusCodes={
+     *          200="Operation reussie",
+     *  }
+     * )
+     * @View()
+     */
+    public function getHoteAction($id)
+    {
+        $em = $this->getEntityManager();
+        $hote = $em->getRepository("AppBundle:Hote")->find($id);
+        return $this->view($hote);
+    }
+    /**
+     * @ApiDoc(
+     *      description= "Liste des hotes",
+     *      statusCodes={
+     *         200="Operation reussie",
+     *      }
+     * )
+     * @View()
+     *
+     */
+    public function getHotesAction()
+    {
+        $em = $this->getEntityManager();
+        $hotes = $em->getRepository("AppBundle:Hote")->findAll();
+        return $this->view($hotes);
+    }
+    /**
+     * @return Response
+     *  @ApiDoc(
+     *      description= "Cree un nouvel hote",
+     *      statusCodes={
+     *          200="Creation reussie",
+     *          400="Donnees non valide"
+     *      }
+     *
+     * )
+     * @View(
+     *      template="AppBundle:Post:postUnite.html.twig",
+     *      statusCode = Codes::HTTP_BAD_REQUEST,
+     *      templateVar="form"
+     * )
+     */
+    public function postHoteAction()
+    {
+        $request = $this->get('request');
+        $hote = $this->deserialize('AppBundle\Entity\Hote',$request,'json',array('create','common'));
+        if($hote instanceof Hote ===false){
+            return $this->view(array('errors'=>$hote),Codes::HTTP_BAD_REQUEST);
+        }
+        return $this->save($hote,'get_unite') ;
+    }
+    /**
+     * @param Hote $hote
+     * @return array|\FOS\RestBundle\View\View
+     * @ApiDoc(
+     *           description="Modifier une unite",
+     *           statusCodes={
+     *               200="Modification reussie",
+     *               400="Donnees invalide"
+     *           }
+     *   )
+     * @ParamConverter("hote",class="AppBundle:Hote")
+     */
+    public function  putHoteAction(Hote $hote)
+    {
+        $request = $this->get('request');
+        $newHote = $this->deserialize('AppBundle\Entity\Hote',$request,'json',array('common'));
+        if($newHote instanceof Hote ===false){
+            return $this->view(array('errors'=>$newHote),Codes::HTTP_BAD_REQUEST);
+        }
+        $hote->update($newHote);
+        return $this->save($hote,'get_unite');
+    }
+    /**
+     * @param Hote $hote
+     * @ApiDoc(
+     *      description="Supprime un hote",
+     *      statusCodes={
+     *       204="Suppression reussie"
+     *      }
+     * )
+     * @ParamConverter("hote",class="AppBundle:Hote")
+     * @View(statusCode=204)
+     */
+    public function deleteHoteAction(Hote $hote)
+    {
+        $em = $this->getEntityManager();
+        $em->remove($hote);
+        $em->flush();
+    }
+
+
+    /**
      * @param TypeIndicateur $typeIndicateur
      * @return array
      * @ApiDoc(
@@ -384,10 +484,11 @@ class IndicateurController extends  ApiController {
      *      statusCode = Codes::HTTP_BAD_REQUEST,
      *      templateVar="form"
      * )
-     * @Post("type-indicateurs/{typeIndicateur}/indicateurs")
+     * @Post("type-indicateurs/{typeIndicateur}/hotes/{hote}/indicateurs")
      * @ParamConverter("typeIndicateur",class="AppBundle:TypeIndicateur")
+     * @ParamConverter("hote",class="AppBundle:Hote")
      */
-    public function postIndicateurAction(TypeIndicateur $typeIndicateur)
+    public function postIndicateurAction(TypeIndicateur $typeIndicateur,Hote $hote)
     {
         $request = $this->get('request');
         $indicateur = $this->deserialize('AppBundle\Entity\Indicateur',$request,'json',array('common'));
@@ -395,6 +496,7 @@ class IndicateurController extends  ApiController {
             return $this->view(array('errors'=>$indicateur),Codes::HTTP_BAD_REQUEST);
         }
         $indicateur->setTypeIndicateur($typeIndicateur);
+        $indicateur->addHote($hote);
         return $this->save($indicateur,'get_indicateur') ;
 
     }
