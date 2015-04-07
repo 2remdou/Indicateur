@@ -1,26 +1,29 @@
-<form class="form-horizontal" ng-submit="saveIndicateur(method)" style="padding-left: 50px;">
+<form class="form-horizontal" ng-submit="saveIndicateur(method)" style="padding-left:20%;">
     <fieldset>
         <legend>Liste des indicateurs</legend>
         <div class="form-group">
             <div class="col-lg-3">
                 <label for="libelleIndicateur" class="control-label">Libelle de l'unite</label>
                 <input type="text" class="form-control" id="libelleIndicateur" ng-model="newIndicateur.libelleIndicateur" placeholder="Le libelle (Ex:Espace dbdev ...)">
-            </div>
-            <div class="col-lg-2">
+
                 <label for="typeIndicateur" class="control-label">Type Indicateur</label>
                 <select class="form-control" id="typeIndicateur" ng-model="newIndicateur.typeIndicateur"
                         ng-options="typeIndicateur as typeIndicateur.libelleTypeIndicateur
                          for typeIndicateur in typeIndicateurs">
                 </select>
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-3">
                 <label for="hote" class="control-label">Hote</label>
-                <select class="form-control" id="hote" ng-model="newIndicateur.hote"
-                        ng-options="hote as hote.libelleHote
-                         for hote in hotes">
-                </select>
+                <div id="hote">
+                    <div class="checkbox"  ng-model="ho" ng-repeat="hote in hotes">
+                        <label>
+                            <input type="checkbox" ng-change="selectHote(hote.id)"> {{hote.libelleHote}}
+                        </label>
+                    </div>
+
+                </div>
             </div>
-            <div style="padding-top: 30px;">
+            <div class="col-lg-3">
                 <button type="reset" ng-click="annuler()" class="btn btn-default">Annuler</button>
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
             </div>

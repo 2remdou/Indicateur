@@ -1,0 +1,9 @@
+#hote
+{
+    width: 220px;
+    height: 100px;
+    overflow:scroll;
+    text-align: left;
+    background: #f7f7f7;
+    border: 1px solid #ccc;
+}

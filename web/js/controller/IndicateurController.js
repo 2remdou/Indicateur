@@ -99,4 +99,8 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                     return true;
                 }
 
+                $scope.selectHote = function(id){
+                    console.log(id);
+                }
+
 }]);
