@@ -15,12 +15,11 @@
             <div class="col-lg-3">
                 <label for="hote" class="control-label">Hote</label>
                 <div id="hote">
-                    <div class="checkbox"  ng-model="ho" ng-repeat="hote in hotes">
+                    <div class="checkbox" ng-repeat="hote in hotes">
                         <label>
-                            <input type="checkbox" ng-change="selectHote(hote.id)"> {{hote.libelleHote}}
+                            <input type="checkbox" checklist-model="newIndicateur.hotes" checklist-value="hote"> {{hote.libelleHote}}
                         </label>
                     </div>
-
                 </div>
             </div>
             <div class="col-lg-3">
@@ -43,12 +42,12 @@
     </thead>
     <tbody>
     <ind-loading valeur-loading="loading">
-        <tr ng-repeat="indicateur in indicateurs" >
+        <tr ng-repeat="indicateur in indicateurs track by $index" >
             <td>{{$index+1}}</td>
             <td>{{indicateur.id}}</td>
             <td>{{indicateur.libelleIndicateur}}</td>
             <td>{{indicateur.typeIndicateur.libelleTypeIndicateur}}</td>
-            <td ng-repeat="hote in indicateur.hotes">{{hote.libelleHote}}</td>
+            <td>{{indicateur.hote.libelleHote}}</td>
 
             <td><button class="btn btn-info" ng-click="editIndicateur(indicateur)">Modifier</button></td>
             <td><button class="btn btn-info" ng-click="deleteIndicateur(indicateur)">Supprimer</button></td>

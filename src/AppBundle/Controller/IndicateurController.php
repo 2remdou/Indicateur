@@ -484,20 +484,24 @@ class IndicateurController extends  ApiController {
      *      statusCode = Codes::HTTP_BAD_REQUEST,
      *      templateVar="form"
      * )
-     * @Post("type-indicateurs/{typeIndicateur}/hotes/{hote}/indicateurs")
+     * @Post("type-indicateurs/{typeIndicateur}/indicateurs")
      * @ParamConverter("typeIndicateur",class="AppBundle:TypeIndicateur")
-     * @ParamConverter("hote",class="AppBundle:Hote")
      */
-    public function postIndicateurAction(TypeIndicateur $typeIndicateur,Hote $hote)
+    public function postIndicateurAction(TypeIndicateur $typeIndicateur)
     {
         $request = $this->get('request');
+        $em = $this->getEntityManager();
         $indicateur = $this->deserialize('AppBundle\Entity\Indicateur',$request,'json',array('common'));
         if($indicateur instanceof Indicateur ===false){
             return $this->view(array('errors'=>$indicateur),Codes::HTTP_BAD_REQUEST);
         }
         $indicateur->setTypeIndicateur($typeIndicateur);
-        $indicateur->addHote($hote);
-        return $this->save($indicateur,'get_indicateur') ;
+        foreach($indicateur->getHotes() as $hote){
+            $indicateur->removeHote($hote);
+            $indicateur->addHote($em->getRepository("AppBundle:Hote")->find($hote->getId()));
+        }
+//        return $this->view($indicateur);
+        return $this->save($indicateur,'get_indicateur');
 
     }
     /**

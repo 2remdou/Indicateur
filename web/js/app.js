@@ -4,7 +4,8 @@
 
 var app = angular.module('app',[
     'restangular',
-    'ngRoute'
+    'ngRoute',
+    'checklist-model'
 ]);
 
 app.config(['$routeProvider',function($routeProvider){

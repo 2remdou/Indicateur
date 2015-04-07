@@ -43,7 +43,7 @@ class Hote
     /**
      * @var string
      *
-     * @ORM\Column(name="libelleHote", type="string", length=255)
+     * @ORM\Column(name="libelleHote", type="string", length=255,unique=true)
      * @Expose()
      * @SerializedName("libelleHote")
      * @Assert\NotBlank(message="Veuillez fournir le libelle")

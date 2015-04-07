@@ -9,7 +9,9 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                 $scope.all = function(){
                 $rootScope.loading=true;
                     indicateurFactory.getList().then(function(indicateurs){
+                        console.log(indicateurs);
                         $scope.indicateurs = indicateurs;
+                        formatIndicateur();
                         if(indicateurs.length===0){
                             $rootScope.$broadcast('showMessage',
                                 {messages:["Aucun indicateur pour le moment"],
@@ -33,6 +35,7 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                 $scope.newIndicateur = {};
                 $scope.saveIndicateur = function(){
                     if(!controlFields()) return;
+                    console.log($scope.newIndicateur);
                     if($scope.method === "PUT"){
                         $scope.newIndicateur.put().then(function(values){
                             $rootScope.$broadcast('showMessage',
@@ -44,7 +47,7 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                     }
                     else{
 
-                       typeIndicateurFactory.one($scope.newIndicateur.typeIndicateur.id).one(getRoute('get_hotes'),$scope.newIndicateur.hote.id).post('indicateurs',$scope.newIndicateur)
+                       typeIndicateurFactory.one($scope.newIndicateur.typeIndicateur.id).post('indicateurs',$scope.newIndicateur)
                            .then(function(values){
                            $scope.all();
                            $scope.indicateurs.push($scope.newIndicateur);
@@ -89,6 +92,7 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                         });
                         return false;
                     }
+/*
                     if(!$scope.newIndicateur.hote){
                         $rootScope.$broadcast('showMessage',{
                             messages:["Veuillez selectionner un hote"],
@@ -96,9 +100,22 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                         });
                         return false;
                     }
+*/
                     return true;
                 }
 
+                function formatIndicateur(){
+                    var indicateurs = [];
+                    angular.forEach($scope.indicateurs,function(indicateur){
+                            angular.forEach(indicateur.hotes,function(hote){
+                                indicateur.hote=hote;
+                                indicateurs.push(indicateur);
+                                console.log(hote);
+                                indicateur.hote={};
+                            })
+                    });
+                    $scope.indicateurs = indicateurs;
+                }
                 $scope.selectHote = function(id){
                     console.log(id);
                 }
