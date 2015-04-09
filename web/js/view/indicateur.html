@@ -42,12 +42,14 @@
     </thead>
     <tbody>
     <ind-loading valeur-loading="loading">
-        <tr ng-repeat="indicateur in indicateurs track by $index" >
+        <tr ng-repeat="indicateur in indicateurs" >
             <td>{{$index+1}}</td>
             <td>{{indicateur.id}}</td>
             <td>{{indicateur.libelleIndicateur}}</td>
             <td>{{indicateur.typeIndicateur.libelleTypeIndicateur}}</td>
-            <td>{{indicateur.hote.libelleHote}}</td>
+            <td>
+                <div ng-repeat="hote in indicateur.hotes">{{hote.libelleHote}}</div>
+            </td>
 
             <td><button class="btn btn-info" ng-click="editIndicateur(indicateur)">Modifier</button></td>
             <td><button class="btn btn-info" ng-click="deleteIndicateur(indicateur)">Supprimer</button></td>

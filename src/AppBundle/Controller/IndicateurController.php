@@ -434,7 +434,7 @@ class IndicateurController extends  ApiController {
     {
         $request = $this->get('request');
         $em = $this->getDoctrine()->getManager();
-        $indicateurs = $em->getRepository("AppBundle:Indicateur")->findAll();
+        $indicateurs = $em->getRepository("AppBundle:Indicateur")->all();
         return $this->view($indicateurs);
     }
     /**
@@ -500,7 +500,6 @@ class IndicateurController extends  ApiController {
             $indicateur->removeHote($hote);
             $indicateur->addHote($em->getRepository("AppBundle:Hote")->find($hote->getId()));
         }
-//        return $this->view($indicateur);
         return $this->save($indicateur,'get_indicateur');
 
     }
@@ -528,6 +527,11 @@ class IndicateurController extends  ApiController {
         }
         $em = $this->getEntityManager();
         $newIndicateur->setTypeIndicateur($em->getRepository("AppBundle:TypeIndicateur")->find($newIndicateur->getTypeIndicateur()->getId()));
+        foreach($newIndicateur->getHotes() as $hote){
+            $newIndicateur->removeHote($hote);
+            $newIndicateur->addHote($em->getRepository("AppBundle:Hote")->find($hote->getId()));
+        }
+
         $indicateur->update($newIndicateur);
         return $this->save($indicateur,'get_indicateur');
     }

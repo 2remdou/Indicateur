@@ -12,4 +12,9 @@ use Doctrine\ORM\EntityRepository;
  */
 class IndicateurRepository extends EntityRepository
 {
+    public function all(){
+        $q = $this->createQueryBuilder('i')
+            ->leftJoin('i.hotes','hoste');
+        return $q->getQuery()->getResult();
+    }
 }

@@ -176,19 +176,16 @@ class Indicateur
         if($newIndicateur->getTypeIndicateur() !== $this->getTypeIndicateur()){
             $this->setTypeIndicateur($newIndicateur->getTypeIndicateur());
         }
-       foreach($this->getHotes() as $hote){
+        foreach($this->getHotes() as $hote){
             if(!$newIndicateur->getHotes()->contains($hote)){
-                $this->getHotes()->remove($hote);
+                $this->removeHote($hote);
             }
         }
         foreach($newIndicateur->getHotes() as $hote){
             if(!$this->getHotes()->contains($hote)){
-                $this->getHotes()->add($hote);
+                $this->addHote($hote);
             }
         }
-
-
-
     }
 
     /**
