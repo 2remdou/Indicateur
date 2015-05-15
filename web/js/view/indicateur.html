@@ -3,22 +3,23 @@
         <legend>Liste des indicateurs</legend>
         <div class="form-group">
             <div class="col-lg-3">
-                <label for="libelleIndicateur" class="control-label">Libelle de l'unite</label>
+                <label for="libelleIndicateur" class="control-label">Libelle de l'indicateur</label>
                 <input type="text" class="form-control" id="libelleIndicateur" ng-model="newIndicateur.libelleIndicateur" placeholder="Le libelle (Ex:Espace dbdev ...)">
 
                 <label for="typeIndicateur" class="control-label">Type Indicateur</label>
                 <select class="form-control" id="typeIndicateur" ng-model="newIndicateur.typeIndicateur"
-                        ng-options="typeIndicateur as typeIndicateur.libelleTypeIndicateur
-                         for typeIndicateur in typeIndicateurs">
+                        ng-options="typeIndicateur.libelleTypeIndicateur
+                         for typeIndicateur in typeIndicateurs track by typeIndicateur.id">
                 </select>
             </div>
             <div class="col-lg-3">
-                <label for="hote" class="control-label">Hote</label>
-                <div id="hote">
-                    <div class="checkbox" ng-repeat="hote in hotes">
-                        <label>
-                            <input type="checkbox" checklist-model="newIndicateur.hotes" checklist-value="hote"> {{hote.libelleHote}}
-                        </label>
+                <h5>HOTE</h5>
+                <div  id="hote">
+                    <div ng-repeat="hote in hotes">
+                        <input type="checkbox"
+                               ng-model="newIndicateur.hotes[$index]"
+                                ng-change="selectHote($index)">
+                        {{hote.libelleHote}}
                     </div>
                 </div>
             </div>
@@ -51,7 +52,7 @@
                 <div ng-repeat="hote in indicateur.hotes">{{hote.libelleHote}}</div>
             </td>
 
-            <td><button class="btn btn-info" ng-click="editIndicateur(indicateur)">Modifier</button></td>
+            <td><button class="btn btn-info" ng-click="editIndicateur($index)">Modifier</button></td>
             <td><button class="btn btn-info" ng-click="deleteIndicateur(indicateur)">Supprimer</button></td>
         </tr>
     </ind-loading>

@@ -46,12 +46,14 @@ var getRoute = function(routeName,parametres){
 function intercepError(Restangular,$rootScope){
     Restangular.setErrorInterceptor(function(response, deferred, responseHandler){
         var m = [];
-        angular.forEach(response.data.errors,function(value){
-            m.push(value.message);
-        });
-        $rootScope.$broadcast('showMessage',{
-            messages : m,
-            typeAlert: "danger"
-        })
+        if(response.data){
+            angular.forEach(response.data.errors,function(value){
+                m.push(value.message);
+            });
+            $rootScope.$broadcast('showMessage',{
+                messages : m,
+                typeAlert: "danger"
+            })
+        }
     });
 }

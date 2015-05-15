@@ -531,7 +531,6 @@ class IndicateurController extends  ApiController {
             $newIndicateur->removeHote($hote);
             $newIndicateur->addHote($em->getRepository("AppBundle:Hote")->find($hote->getId()));
         }
-
         $indicateur->update($newIndicateur);
         return $this->save($indicateur,'get_indicateur');
     }

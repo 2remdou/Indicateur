@@ -7,17 +7,17 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
 
                 $rootScope.$broadcast('hideMessage') ;
                 $scope.all = function(){
-                $rootScope.loading=true;
-                    indicateurFactory.getList().then(function(indicateurs){
-                        $scope.indicateurs = indicateurs;
-                        if(indicateurs.length===0){
-                            $rootScope.$broadcast('showMessage',
-                                {messages:["Aucun indicateur pour le moment"],
-                                    typeAlert:"info"
-                                }) ;
-                        }
-                        $rootScope.loading=false;
-                    });
+                    $rootScope.loading=true;
+                        indicateurFactory.getList().then(function(indicateurs){
+                            $scope.indicateurs = indicateurs;
+                            if(indicateurs.length===0){
+                                $rootScope.$broadcast('showMessage',
+                                    {messages:["Aucun indicateur pour le moment"],
+                                        typeAlert:"info"
+                                    }) ;
+                            }
+                            $rootScope.loading=false;
+                        });
                 };
 
                 $scope.all();
@@ -34,7 +34,7 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                 $scope.saveIndicateur = function(){
                     if(!controlFields()) return;
                     if($scope.method === "PUT"){
-                        console.log($scope.newIndicateur.hotes);
+                        console.log($scope.newIndicateur);
                         $scope.newIndicateur.put().then(function(values){
                             $rootScope.$broadcast('showMessage',
                                 {messages:["Modification effectuée"],
@@ -59,9 +59,10 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
 
                 };
 
-                $scope.editIndicateur = function(indicateur){
+                $scope.editIndicateur = function(index){
                     $scope.newIndicateur = {};
-                    $scope.newIndicateur = indicateur;
+                    $scope.newIndicateur = $scope.indicateurs[index];
+                    console.log($scope.newIndicateur);
                     $scope.method = "PUT"
                 };
 
