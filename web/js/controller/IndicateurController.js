@@ -62,6 +62,7 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                 $scope.editIndicateur = function(index){
                     $scope.newIndicateur = {};
                     $scope.newIndicateur = $scope.indicateurs[index];
+                    $scope.hotes = $scope.newIndicateur.hotes;
                     console.log($scope.newIndicateur);
                     $scope.method = "PUT"
                 };
@@ -115,8 +116,22 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                     });
                     $scope.indicateurs = indicateurs;
                 }
-                $scope.selectHote = function(id){
-                    console.log(id);
-                }
+                $scope.selectedHote = function(hote){
+                    var trouve=false;
+                    var index=undefined;
+                    angular.forEach($scope.newIndicateur.hotes,function(value,index){
+                        console.log(value);
+                        if(value.id===hote.id){
+                            /*trouve = true;
+                            index=index;*/
 
+                        }
+                    });
+                   /* if(hote.selected && !trouve){
+                        $scope.newIndicateur.hotes.push(hote);
+                    }
+                    else if(!hote.selected && trouve){
+                        $scope.newIndicateur.hotes.splice(hote.id,1);
+                    }*/
+                }
 }]);

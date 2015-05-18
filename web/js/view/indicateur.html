@@ -17,8 +17,9 @@
                 <div  id="hote">
                     <div ng-repeat="hote in hotes">
                         <input type="checkbox"
-                               ng-model="newIndicateur.hotes[$index]"
-                                ng-change="selectHote($index)">
+                               ng-model="hote.selected"
+                               ng-change="selectedHote(hote)"
+                                />
                         {{hote.libelleHote}}
                     </div>
                 </div>
