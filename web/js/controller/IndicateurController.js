@@ -62,7 +62,18 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                 $scope.editIndicateur = function(index){
                     $scope.newIndicateur = {};
                     $scope.newIndicateur = $scope.indicateurs[index];
-                    $scope.hotes = $scope.newIndicateur.hotes;
+                    //on deselectionne tout
+                    angular.forEach($scope.hotes,function(hoteAll){
+                            hoteAll.selected=false;
+                    });
+                    //on reselectionne en fonction de l'indicateur selectionne
+                    angular.forEach($scope.newIndicateur.hotes,function(hoteSelect){
+                        angular.forEach($scope.hotes,function(hoteAll){
+                            if(hoteSelect.id===hoteAll.id){
+                                hoteAll.selected=true;
+                            }
+                        });
+                    });
                     console.log($scope.newIndicateur);
                     $scope.method = "PUT"
                 };
@@ -118,20 +129,27 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                 }
                 $scope.selectedHote = function(hote){
                     var trouve=false;
-                    var index=undefined;
+                    var pos=undefined;
+                    //creer un tab vide pour les hotes
+                   if(typeof $scope.newIndicateur.hotes==="undefined"){
+                       $scope.newIndicateur.hotes=[];
+                   }
                     angular.forEach($scope.newIndicateur.hotes,function(value,index){
-                        console.log(value);
                         if(value.id===hote.id){
-                            /*trouve = true;
-                            index=index;*/
-
+                            trouve = true;
+                            pos=index;
                         }
                     });
-                   /* if(hote.selected && !trouve){
-                        $scope.newIndicateur.hotes.push(hote);
+                    //l'hote selectionne n'existe pas dans l'indicateur selectionne
+                   if(hote.selected){
+                       if(!trouve){
+                           $scope.newIndicateur.hotes.push(hote);
+                       }
                     }
-                    else if(!hote.selected && trouve){
-                        $scope.newIndicateur.hotes.splice(hote.id,1);
-                    }*/
+                    else{ //l'hote deselectionne existe dans l'indicateur selectionne
+                        if(trouve){
+                            $scope.newIndicateur.hotes.splice(pos,1);
+                        }
+                    }
                 }
 }]);
