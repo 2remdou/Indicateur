@@ -46,6 +46,7 @@ app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope'
                         $scope.method = "POST";
                     }
                     else{
+                        $scope.newDetail.dateDetail = dateFilter($scope.newDetail.dateDetail,'yyyy-M-d h:mm:ss');
                        uniteFactory.one($scope.newDetail.unite.id).one(getRoute('get_indicateurs'),$scope.newDetail.indicateur.id).post('details',$scope.newDetail)
                            .then(function(values){
                            $scope.details.push($scope.newDetail);
@@ -61,8 +62,9 @@ app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope'
                 };
 
                 $scope.editDetail = function(detail){
-                    detail.dateDetail = dateFilter(detail.dateDetail,'yyyy-d-M h:mm:ss');
-                    $scope.newDetail = detail;
+                    detail.dateDetail = dateFilter(detail.dateDetail,'yyyy-M-d h:mm:ss');
+                    //detail.dateDetail = dateFilter(detail.dateDetail,'yyyy-d-M h:mm:ss');
+                    $scope.newDetail = detail.dateDetail;
                     $scope.method = "PUT"
                 };
 

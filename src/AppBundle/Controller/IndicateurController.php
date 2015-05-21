@@ -134,11 +134,8 @@ class IndicateurController extends  ApiController {
     }
     /**
      * {
-     *       "unite":
-     *       {
-     *       "codeUnite": "Ko",
-     *       "libelleUnite":"Kilo Octet"
-     *       }
+     * 	"codeUnite": "To",
+     * 	"libelleUnite": "Tera Octet"
      * }
      * @return Response
      *  @ApiDoc(
@@ -244,6 +241,10 @@ class IndicateurController extends  ApiController {
         return $this->view($hotes);
     }
     /**
+     * {
+     * 	"adresseHote": "10.10.0.16",
+     * 	"libelleHote": "Serveur de developpement"
+     * }
      * @return Response
      *  @ApiDoc(
      *      description= "Cree un nouvel hote",
@@ -345,6 +346,9 @@ class IndicateurController extends  ApiController {
         return $this->view($typeIndicateurs);
     }
     /**
+     * {
+     * 	"libelleTypeIndicateur": "Base de donnees",
+     * }
      * }
      * @return Response
      *  @ApiDoc(
@@ -460,16 +464,23 @@ class IndicateurController extends  ApiController {
     }
     /**
      *
-     * {
-     *      "libelleIndicateur": "Espace FS",
-     *      "indicateur":
-     *      {
-     *          "typeIndicateur":
-     *          {
-     *              "libelleTypeIndicateur": "Base de donnees"
-     *          }
-     *      }
-     * }
+     * http://10.10.201.29/indicateur/app_dev.php/type-indicateurs/3/indicateurs
+     *{
+     *	"libelleIndicateur": "/",
+     *	"hotes":
+     *	[
+     *		{
+     *			"id": 1
+     *		},
+     *		{
+     *			"id":2
+     *		},
+     *		{
+     *			"id":3
+     *		}
+     *
+     *	]
+     *}
      * @return Response
      *  @ApiDoc(
      *      description= "Cree un nouvel indicateur",
@@ -640,6 +651,12 @@ class IndicateurController extends  ApiController {
 
 
     /**
+     * http://10.10.201.29/indicateur/app_dev.php/unites/2/indicateurs/1/details
+     *
+     *{
+     *	"dateDetail": "2014-12-13 12:42:48",
+     *	"valeur": 100
+     *}
      * @ApiDoc(
      *      description= "Cree un detail d'un indicateur",
      *      statusCodes={

@@ -108,6 +108,10 @@ sensio_framework_extra:
     request: { converters: true }
 
 jms_serializer:
+    handlers:
+        datetime:
+            default_format: "Y-m-d h:i:s"
+            default_timezone: "UTC"
     property_naming:
         separator:
         lower_case: false
