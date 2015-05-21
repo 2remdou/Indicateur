@@ -1,8 +1,8 @@
 /**
  * Created by delphinsagno on 15/03/15.
  */
-app.controller('IndicateurController',['$scope','Restangular','$rootScope','indicateurFactory','typeIndicateurFactory','hoteFactory',
-    function($scope,Restangular,$rootScope,indicateurFactory,typeIndicateurFactory,hoteFactory){
+app.controller('IndicateurController',['$scope','Restangular','$rootScope','indicateurFactory','typeIndicateurFactory','hoteFactory','uniteFactory',
+    function($scope,Restangular,$rootScope,indicateurFactory,typeIndicateurFactory,hoteFactory,uniteFactory){
                 intercepError(Restangular,$rootScope);
 
                 $rootScope.$broadcast('hideMessage') ;
@@ -30,11 +30,14 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                     $scope.hotes = hote;
                 });
 
+                uniteFactory.getList().then(function(unites){
+                    $scope.unites = unites;
+                })
+
                 $scope.newIndicateur = {};
                 $scope.saveIndicateur = function(){
                     if(!controlFields()) return;
                     if($scope.method === "PUT"){
-                        console.log($scope.newIndicateur);
                         $scope.newIndicateur.put().then(function(values){
                             $rootScope.$broadcast('showMessage',
                                 {messages:["Modification effectuée"],
@@ -44,7 +47,9 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                         $scope.method = "POST";
                     }
                     else{
-                       typeIndicateurFactory.one($scope.newIndicateur.typeIndicateur.id).post('indicateurs',$scope.newIndicateur)
+                       typeIndicateurFactory.one($scope.newIndicateur.typeIndicateur.id)
+                           .one(getRoute('get_unites'),$scope.newIndicateur.unite.id)
+                           .post('indicateurs',$scope.newIndicateur)
                            .then(function(values){
                            $scope.all();
                            $scope.indicateurs.push($scope.newIndicateur);
@@ -74,7 +79,6 @@ app.controller('IndicateurController',['$scope','Restangular','$rootScope','indi
                             }
                         });
                     });
-                    console.log($scope.newIndicateur);
                     $scope.method = "PUT"
                 };
 

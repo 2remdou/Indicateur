@@ -11,6 +11,12 @@
                         ng-options="typeIndicateur.libelleTypeIndicateur
                          for typeIndicateur in typeIndicateurs track by typeIndicateur.id">
                 </select>
+
+                <label for="unite" class="control-label">Unite</label>
+                <select class="form-control" id="unite" ng-model="newIndicateur.unite"
+                        ng-options="unite.libelleUnite
+                         for unite in unites track by unite.id">
+                </select>
             </div>
             <div class="col-lg-3">
                 <h5>HOTE</h5>
@@ -39,7 +45,9 @@
         <th>Id</th>
         <th>Libelle Indicateur</th>
         <th>Type Indicateur</th>
+        <th>Unite</th>
         <th>Hote</th>
+
     </tr>
     </thead>
     <tbody>
@@ -49,6 +57,7 @@
             <td>{{indicateur.id}}</td>
             <td>{{indicateur.libelleIndicateur}}</td>
             <td>{{indicateur.typeIndicateur.libelleTypeIndicateur}}</td>
+            <td>{{indicateur.unite.libelleUnite}}</td>
             <td>
                 <div ng-repeat="hote in indicateur.hotes">{{hote.libelleHote}}</div>
             </td>

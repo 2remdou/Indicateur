@@ -57,14 +57,6 @@ class DetailIndicateur
     private $indicateur;
 
     /**
-     * @var Unite $unite
-     *
-     * @ORM\ManyToOne(targetEntity="Unite", inversedBy="detailIndicateurs")
-     * @Expose()
-     * @SerializedName("unite")
-     */
-    private $unite;
-    /**
      * Get id
      *
      * @return integer 
@@ -99,28 +91,6 @@ class DetailIndicateur
         return $this->indicateur;
     }
 
-    /**
-     * Set unite
-     *
-     * @param \AppBundle\Entity\Unite $unite
-     * @return DetailIndicateur
-     */
-    public function setUnite(\AppBundle\Entity\Unite $unite = null)
-    {
-        $this->unite = $unite;
-
-        return $this;
-    }
-
-    /**
-     * Get unite
-     *
-     * @return \AppBundle\Entity\Unite 
-     */
-    public function getUnite()
-    {
-        return $this->unite;
-    }
 
     public function update(DetailIndicateur $newDetail)
     {
@@ -129,10 +99,6 @@ class DetailIndicateur
         if($newDetail->getIndicateur() !== $this->getIndicateur()){
             $this->setIndicateur($newDetail->getIndicateur());
         }
-        if($newDetail->getUnite() !== $this->getUnite()){
-            $this->setUnite($newDetail->getUnite());
-        }
-        $this->setUnite($newDetail->getUnite());
     }
 
     /**

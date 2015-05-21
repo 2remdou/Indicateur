@@ -1,8 +1,8 @@
 /**
  * Created by delphinsagno on 15/03/15.
  */
-app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope','indicateurFactory','uniteFactory','detailIndicateurFactory','dateFilter',
-    function($scope,Restangular,$rootScope,indicateurFactory,uniteFactory,detailIndicateurFactory,dateFilter){
+app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope','indicateurFactory','detailIndicateurFactory','dateFilter',
+    function($scope,Restangular,$rootScope,indicateurFactory,detailIndicateurFactory,dateFilter){
                 intercepError(Restangular,$rootScope);
                 $rootScope.$broadcast('hideMessage') ;
                 $scope.all = function(){
@@ -26,14 +26,17 @@ app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope'
                     $scope.indicateurs = indicateurs;
                 });
 
+/*
                 uniteFactory.getList().then(function(unites){
                     $scope.unites = unites;
                 });
+*/
 
 
 
                 $scope.newDetail = {};
                 $scope.saveDetail = function(){
+                    console.log($scope.newDetail.dateDetail);
                     if(!controlFields()) return;
                     if($scope.method === "PUT"){
                         $scope.newIndicateur.put().then(function(values){
@@ -47,7 +50,8 @@ app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope'
                     }
                     else{
                         $scope.newDetail.dateDetail = dateFilter($scope.newDetail.dateDetail,'yyyy-M-d h:mm:ss');
-                       uniteFactory.one($scope.newDetail.unite.id).one(getRoute('get_indicateurs'),$scope.newDetail.indicateur.id).post('details',$scope.newDetail)
+                       //uniteFactory.one($scope.newDetail.unite.id).one(getRoute('get_indicateurs'),$scope.newDetail.indicateur.id).post('details',$scope.newDetail)
+                       indicateurFactory.one($scope.newDetail.indicateur.id).post('details',$scope.newDetail)
                            .then(function(values){
                            $scope.details.push($scope.newDetail);
                            $scope.newDetail = {};
@@ -96,6 +100,7 @@ app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope'
 
                 };
 
+/*
                 $scope.changeUnite = function(){
                     $rootScope.loading=true;
                     $scope.newDetail.unite.getList(getRoute('get_detail_indicateurs'))
@@ -111,17 +116,21 @@ app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope'
                         });
 
                 };
+*/
 
                 $scope.filtre = function(){
                     $rootScope.$broadcast('hideMessage')
                   if($scope.newDetail.indicateur && !$scope.newDetail.unite){
                         $scope.changeIndicateur();
                   }
+/*
                   else if($scope.newDetail.unite && !$scope.newDetail.indicateur){
                       $scope.changeUnite();
                   }
-                  else if($scope.newDetail.unite && $scope.newDetail.indicateur){
-                      uniteFactory.one($scope.newDetail.unite.id).one(getRoute('get_indicateurs'),$scope.newDetail.indicateur.id).getList(getRoute('get_detail_indicateurs'))
+*/
+                  else if($scope.newDetail.indicateur){
+                      //uniteFactory.one($scope.newDetail.unite.id).one(getRoute('get_indicateurs'),$scope.newDetail.indicateur.id).getList(getRoute('get_detail_indicateurs'))
+                      indicateurFactory.one($scope.newDetail.indicateur.id).getList(getRoute('get_detail_indicateurs'))
                           .then(function(details){
                               $scope.details = details;
                               if(details.length===0){
@@ -147,6 +156,7 @@ app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope'
                         });
                         return false;
                     }
+/*
                     if(!$scope.newDetail.unite){
                         $rootScope.$broadcast('showMessage',{
                             messages:["Veuillez selectionner une unite"],
@@ -154,6 +164,7 @@ app.controller('DetailIndicateurController',['$scope','Restangular','$rootScope'
                         });
                         return false;
                     }
+*/
                     if(!$scope.newDetail.valeur){
                         $rootScope.$broadcast('showMessage',{
                             messages:["Veuillez fournir une valeur"],

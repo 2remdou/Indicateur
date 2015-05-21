@@ -495,10 +495,11 @@ class IndicateurController extends  ApiController {
      *      statusCode = Codes::HTTP_BAD_REQUEST,
      *      templateVar="form"
      * )
-     * @Post("type-indicateurs/{typeIndicateur}/indicateurs")
+     * @Post("type-indicateurs/{typeIndicateur}/unites/{unite}/indicateurs")
      * @ParamConverter("typeIndicateur",class="AppBundle:TypeIndicateur")
+     * @ParamConverter("unite",class="AppBundle:Unite")
      */
-    public function postIndicateurAction(TypeIndicateur $typeIndicateur)
+    public function postIndicateurAction(TypeIndicateur $typeIndicateur,Unite $unite)
     {
         $request = $this->get('request');
         $em = $this->getEntityManager();
@@ -507,6 +508,7 @@ class IndicateurController extends  ApiController {
             return $this->view(array('errors'=>$indicateur),Codes::HTTP_BAD_REQUEST);
         }
         $indicateur->setTypeIndicateur($typeIndicateur);
+        $indicateur->setUnite($unite);
         foreach($indicateur->getHotes() as $hote){
             $indicateur->removeHote($hote);
             $indicateur->addHote($em->getRepository("AppBundle:Hote")->find($hote->getId()));
@@ -515,7 +517,6 @@ class IndicateurController extends  ApiController {
 
     }
     /**
-     * @param TypeIndicateur $typeIndicateur
      * @param Indicateur $indicateur
      * @return array|\FOS\RestBundle\View\View
      * @ApiDoc(
@@ -538,6 +539,7 @@ class IndicateurController extends  ApiController {
         }
         $em = $this->getEntityManager();
         $newIndicateur->setTypeIndicateur($em->getRepository("AppBundle:TypeIndicateur")->find($newIndicateur->getTypeIndicateur()->getId()));
+        $newIndicateur->setUnite($em->getRepository("AppBundle:Unite")->find($newIndicateur->getUnite()->getId()));
         foreach($newIndicateur->getHotes() as $hote){
             $newIndicateur->removeHote($hote);
             $newIndicateur->addHote($em->getRepository("AppBundle:Hote")->find($hote->getId()));
@@ -665,27 +667,23 @@ class IndicateurController extends  ApiController {
      *      }
      *
      * )
-     * @Post("unites/{unite}/indicateurs/{indicateur}/details")
-     * @ParamConverter("unite",class="AppBundle:Unite")
+     * @Post("indicateurs/{indicateur}/details")
      * @ParamConverter("indicateur",class="AppBundle:Indicateur")
      * @View()
      */
-    public function postDetailIndicateurAction(Unite $unite,Indicateur $indicateur)
+    public function postDetailIndicateurAction(Indicateur $indicateur)
     {
         $request = $this->get('request');
         $detail = $this->deserialize('AppBundle\Entity\DetailIndicateur',$request,'json',array('create','common'));
         if($detail instanceof DetailIndicateur ===false){
             return $this->view(array('errors'=>$detail),Codes::HTTP_BAD_REQUEST);
         }
-        $detail->setUnite($unite);
         $detail->setIndicateur($indicateur);
         return $this->save($detail,'get_indicateur') ;
 
         return $this->processForm($detail,new DetailIndicateurType(),'get_detail_indicateur');
     }
     /**
-     * @param Unite $unite
-     * @param Indicateur $indicateur
      * @param DetailIndicateur $detailIndicateur
      * @return array|\FOS\RestBundle\View\View
      * @ApiDoc(
@@ -707,7 +705,6 @@ class IndicateurController extends  ApiController {
             return $this->view(array('errors'=>$newDetail),Codes::HTTP_BAD_REQUEST);
         }
         $em = $this->getEntityManager();
-        $newDetail->setUnite($em->getRepository("AppBundle:Unite")->find($newDetail->getUnite()->getId()));
         $newDetail->setIndicateur($em->getRepository("AppBundle:Indicateur")->find($newDetail->getIndicateur()->getId()));
         $detail->update($newDetail);
         return $this->save($detail,'get_indicateur');

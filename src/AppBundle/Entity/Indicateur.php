@@ -48,7 +48,7 @@ class Indicateur
     /**
      * @var Doctrine\Common\Collections\Collection $detailIndicateurs
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\DetailIndicateur", mappedBy="indicateur")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\DetailIndicateur", mappedBy="indicateur", cascade={"remove"})
      *
      */
     private $detailIndicateurs;
@@ -70,6 +70,15 @@ class Indicateur
      * @SerializedName("hotes")
      */
     private $hotes;
+
+    /**
+     * @var Unite $unite
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Unite", inversedBy="unite")
+     * @Expose()
+     * @ORM\JoinColumn(nullable=false)
+     * @SerializedName("unite")
+     */
+    private $unite;
 
     /**
      * Get id
@@ -176,16 +185,13 @@ class Indicateur
         if($newIndicateur->getTypeIndicateur() !== $this->getTypeIndicateur()){
             $this->setTypeIndicateur($newIndicateur->getTypeIndicateur());
         }
+        if($newIndicateur->getUnite() !== $this->getUnite()){
+            $this->setUnite($newIndicateur->getUnite());
+        }
         foreach($this->getHotes() as $hote){
-            /*if(!$newIndicateur->getHotes()->contains($hote)){
-                $this->removeHote($hote);
-            }*/
             $this->removeHote($hote);
         }
         foreach($newIndicateur->getHotes() as $hote){
-            /*if(!$this->getHotes()->contains($hote)){
-                $this->addHote($hote);
-            }*/
             $this->addHote($hote);
         }
     }
@@ -221,5 +227,28 @@ class Indicateur
     public function getHotes()
     {
         return $this->hotes;
+    }
+
+    /**
+     * Set unite
+     *
+     * @param \AppBundle\Entity\Unite $unite
+     * @return Indicateur
+     */
+    public function setUnite(\AppBundle\Entity\Unite $unite)
+    {
+        $this->unite = $unite;
+
+        return $this;
+    }
+
+    /**
+     * Get unite
+     *
+     * @return \AppBundle\Entity\Unite 
+     */
+    public function getUnite()
+    {
+        return $this->unite;
     }
 }
